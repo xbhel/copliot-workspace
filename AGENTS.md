@@ -1,15 +1,5 @@
 # Agents & Skills Guidelines
 
-## Project Structure
-
-The project is organized into the following directories:
-
-- `agents/`: Agents definitions that orchestrate multiple skills to achieve complex tasks.
-- `skills/`: Skill definitions and implementations.
-- `mcp_servers/`: Mcp server implementations and related resources.
-- `scripts/`: Utility scripts for testing, deployment, and maintenance.
-
-
 ## Content Structure
 
 When authoring a **skill file**, organize the content in the following order:
