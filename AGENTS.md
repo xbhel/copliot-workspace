@@ -3,6 +3,7 @@
 ## Content Structure
 
 When authoring a **skill file**, organize the content in the following order:
+
 1. Metadata:
    - `name`
    - `description`
@@ -25,18 +26,19 @@ When authoring a **skill file**, organize the content in the following order:
 **Agents files** should follow a similar structure but may omit sections that are not relevant to their orchestration role.
 
 Agent guidelines:
+
 - Keep metadata first.
 - Prefer including `## Goal`, `## Inputs`, and `## Workflow` sections for clarity.
 - Add other sections only when they provide meaningful context or guidance.
 
 ## User Interaction
 
-Users typically invoke an **agent** or **skill** by name. 
+Users typically invoke an **agent** or **skill** by name.
 
 If input parameters are required:
 
 - Collect values through an appropriate interface (e.g., form, command line, API request).
 - Prefer using `ask_questions` to gather or confirm input values unless another interface is better suited for the context.
 - Present both:
-    - **Missing values** that require user input.
-    - **Inferred or pre-collected values**, allowing the user to review and confirm them before execution.
+  - **Missing values** that require user input.
+  - **Inferred or pre-collected values**, allowing the user to review and confirm them before execution.

@@ -37,10 +37,10 @@ Output one normalized link per detected URL and nothing else.
 
 ## Examples
 
-Example 1:
+URL example:
 - Input: https://github.com/punkpeye/awesome-mcp-servers
 - Output: [github/punkpeye/repo/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers): A collection of excellent MCP servers.
 
-Example 2:
+Markdown link example:
 - Input: [The State of MCP in 2025](https://glama.ai/blog/2025-12-07-the-state-of-mcp-in-2025)
 - Output: [glama/blog/the-state-of-mcp-in-2025](https://glama.ai/blog/2025-12-07-the-state-of-mcp-in-2025): An analysis predicting or discussing the state and trends of MCP by 2025.
