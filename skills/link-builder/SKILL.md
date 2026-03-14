@@ -24,7 +24,6 @@ Fields:
 |-|-|-|-|-|
 |text|text containing raw URL, markdown link, or mixed prose with links.| |Yes|user or upstream|
 
-
 ## Output
 
 Output one normalized link per detected URL and nothing else.
