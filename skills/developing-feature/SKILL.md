@@ -1,5 +1,5 @@
 ---
-name: feature-dev
+name: developing-feature
 description: A skill to assist with feature development tasks, including code generation, testing, and documentation.
 metadata: 
   version: 1.0.0

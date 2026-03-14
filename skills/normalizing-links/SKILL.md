@@ -1,5 +1,5 @@
 ---
-name: link-builder
+name: normalizing-links
 description: Extract links from text and convert them into a consistent markdown link format.
 metadata: 
   version: 1.0.0
