@@ -14,12 +14,12 @@ Extract links from mixed content (raw URLs, markdown links, or mixed prose) and 
 
 Fields:
 
-- `from`: 2-10 chars, lowercased ASCII, inferred from domain/brand.
+- `from`: 2-20 chars, lowercased ASCII, inferred from domain/brand.
 - `owner`: Optional, 2-20 chars, lowercased ASCII, inferred from domain/brand or content creator.
-- `type`: 2-10 chars, lowercased ASCII, inferred from URL path or content. such as `article`, `video`, `repo`, `docs`, `blog`, `news`, `forum`, `wiki`, `industry`, `report` etc.
-- `title`: kebab-case, lowercased ASCII, max 50 chars.
+- `type`: 2-15 chars, lowercased ASCII, inferred from URL path or content. such as `article`, `video`, `repo`, `docs`, `blog`, `news`, `forum`, `wiki`, `industry`, `report` etc.
+- `title`: kebab-case, lowercased ASCII, max 60 chars.
 - `url`: The URL of the link.
-- `description`: concise English summary, max 100 chars, English. 
+- `description`: concise English summary, max 150 chars, English. 
 
 ## Inputs
 
@@ -37,10 +37,10 @@ Output one normalized link per detected URL and nothing else.
 
 ## Examples
 
-URL example:
+URL:
 - Input: https://github.com/punkpeye/awesome-mcp-servers
 - Output: [github/punkpeye/repo/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers): A collection of excellent MCP servers.
 
-Markdown link example:
+Markdown link:
 - Input: [The State of MCP in 2025](https://glama.ai/blog/2025-12-07-the-state-of-mcp-in-2025)
 - Output: [glama/blog/the-state-of-mcp-in-2025](https://glama.ai/blog/2025-12-07-the-state-of-mcp-in-2025): An analysis predicting or discussing the state and trends of MCP by 2025.
