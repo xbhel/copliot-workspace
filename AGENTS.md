@@ -1,5 +1,10 @@
 # Agents & Skills Guidelines
 
+## Naming Conventions
+
+- Skill: use lowercase, gerund form (verb-ing), and hyphen separation (e.g., creating-pull-request) to clearly express the action or capability provided.
+- Agent: use lowercase, hyphen separation, and a role-based suffix (e.g., -assistant, -expert) to explicitly convey the agent’s responsibility and specialization (e.g., email-assistant).
+
 ## Content Structure
 
 When authoring a **skill file**, organize the content in the following order:
@@ -71,6 +76,6 @@ If input parameters are required:
 
 ## Core Principles
 
-- Input parameters must be referenced using the `{}` syntax within the skill's workflow or logic.
+- Input parameters must be referenced using the `{}` syntax within the skill or agent definition.
 - Never ask the user for information that can be inferred or obtained through allowed tools or commands.
 - Never assume that the user has provided all necessary information. Always check for missing inputs and ask for them explicitly.
