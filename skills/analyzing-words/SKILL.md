@@ -4,6 +4,7 @@ description: Analyze words and provide pronunciation, part of speech, beginner-f
 metadata: 
   version: 1.0.0
   tags: [word analysis, linguistics, language learning]
+  owner: xbhel
 ---
 
 ## Goal
