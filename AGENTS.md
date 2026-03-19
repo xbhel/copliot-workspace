@@ -2,7 +2,7 @@
 
 ## Naming Conventions
 
-- Skill: use lowercase, gerund form (verb-ing), and hyphen separation (e.g., creating-pull-request) to clearly express the action or capability provided.
+- Skill: use lowercase, action-oriented:, and hyphen separation (e.g., creating-pull-request) to clearly express the action or capability provided.
 - Agent: use lowercase, hyphen separation, and a role-based suffix (e.g., -assistant, -expert) to explicitly convey the agent’s responsibility and specialization (e.g., email-assistant).
 
 ## Content Structure

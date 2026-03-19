@@ -1,5 +1,5 @@
 ---
-name: analyzing-words
+name: analyze-words
 description: Analyze words and provide pronunciation, part of speech, beginner-friendly meanings, morphology, common phrases, and example sentences.
 metadata: 
   version: 1.0.0

@@ -1,5 +1,5 @@
 ---
-name: creating-unit-testing-skills
+name: unit-testing-skill-creator
 description: Create or adapt unit testing skills across languages and testing stacks from a shared template.
 metadata: 
   version: 1.0.0
