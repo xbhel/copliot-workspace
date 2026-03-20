@@ -1,8 +1,8 @@
 # Layer Templates
 
-Use this file as the detailed reference for the six-layer unit testing skill template. Every checklist item must be turned into concrete, target-specific guidance for the generated skill.
+This file defines the layered checklist template used to create unit testing skills. When creating a skill from this template, every checklist item in each layer **MUST** be turned into **concrete, target-specific guidance**, not left as a generic prompt.
 
-## Layer 1: Language-agnostic principles template checklist
+## Layer 1: Language-agnostic principles checklist
 
 1. [ ] **Tests as first-class citizens:** Treat tests as essential code artifacts that deserve the same care, review standards, and maintenance discipline as production code.
 2. [ ] **Test design:** Follow the AAA pattern (Arrange, Act, Assert) to give every test a clear setup, action, and verification phase.
@@ -27,7 +27,7 @@ Use this file as the detailed reference for the six-layer unit testing skill tem
 21. [ ] **Refactoring feedback loop:** Use test friction and test results as signals for improving production code design, modularity, and testability.
 22. [ ] **Defect reporting:** When testing reveals a bug, document a minimal reproduction, expected versus actual behavior, impact, and the relevant test evidence.
 
-## Layer 2: Language-specific adapters template checklist
+## Layer 2: Language-specific adapters checklist
 
 For each item, replace the generic guidance with concrete details for `{language}`, `{testing_stack}`, `{build_tool}`, and `{project_layout}`.
 
@@ -42,7 +42,7 @@ For each item, replace the generic guidance with concrete details for `{language
 9. [ ] **Coverage tooling:** Name the coverage tool, show how to run it, interpret output, and configure branch-level or statement-level reporting.
 10. [ ] **Common pitfalls:** List language-specific mistakes that frequently cause test failures or flakiness, such as import-path errors, shared mock state, implicit global state, or encoding issues.
 
-## Layer 3: Optional domain or framework extensions template checklist
+## Layer 3: Optional domain or framework extensions checklist
 
 This layer applies only when `{domain_context}` is specified. Populate each item with concrete, framework- or domain-specific details.
 
@@ -56,34 +56,39 @@ This layer applies only when `{domain_context}` is specified. Populate each item
 8. [ ] **Serialization and data contracts:** Define strategies for testing serialization, schema evolution, format compatibility, and cross-boundary type safety where applicable.
 9. [ ] **Framework-specific pitfalls:** List common testing mistakes and gotchas (e.g., threading assumptions, hidden global config, discrepancies between test and production behavior).
 
-## Layer 4: Iterative test-and-fix workflow template checklist
+## Layer 4: Iterative test-and-fix workflow checklist
 
 This layer defines the execution workflow for the generated skill, controlled by `{max_iterations}` and `{coverage_target}`.
 
-### 1. Identify scope
+**1. Identify scope**
 
 - [ ] **Target mapping:** Identify all source modules and map each to its corresponding test file location.
 - [ ] **Exclusion rules:** Define files to skip (e.g., modules without logic, generated code, configuration-only files).
 
-### 2. Review existing tests
+**2. Review existing tests**
 
 - [ ] **Correctness check:** Ensure existing tests are still correct, current, and meaningful.
 - [ ] **Gap analysis:** Identify untested behaviors, branches, and edge cases without duplicating existing coverage.
 - [ ] **Rewrite criteria:** Rewrite tests only if they are incorrect, obsolete, or excessively brittle.
 
-### 3. Add tests
+**3. Add tests**
 
 - [ ] **Coverage priorities:** Focus new tests on happy paths, boundary/edge cases, exception handling, and business-logic branches.
 - [ ] **One behavior per test:** Each new test should verify a single behavior aligned with the unit scope principle (Layer 1 #4).
 
-### 4. Test-and-fix loop
+**4. Test-and-fix loop**
 
-- [ ] **Loop structure:** For each iteration: run tests -> run lint -> fix failures -> add/refine tests -> evaluate exit conditions.
+- [ ] **Loop structure:** For each iteration: run tests → run lint → fix failures → add/refine tests → evaluate exit conditions.
 - [ ] **Fix priority:** Resolve failing tests and lint issues before introducing new tests.
 - [ ] **Coverage-driven additions:** Use coverage reports to target untested paths rather than adding tests blindly.
 - [ ] **Exit conditions:** Stop when all tests pass, lint is clean, coverage meets `{coverage_target}`, or `{max_iterations}` is reached.
 
-## Layer 5: Output template checklist
+**5. Report the result**
+
+- [ ] Return the standardized summary from the Output section.
+- [ ] Include remaining risks, meaningful coverage gaps, and any production-code issues discovered while testing.
+
+## Layer 5: Output checklist
 
 This layer defines the output template for the generated skill.
 
@@ -97,7 +102,7 @@ This layer defines the output template for the generated skill.
 8. [ ] **Code issues or refactoring opportunities found:** Production code problems, design concerns, or testability improvements discovered during testing.
 9. [ ] **Iterations used and exit reason:** Number of iterations consumed and which exit condition was met.
 
-## Layer 6: Error handling template checklist
+## Layer 6: Error handling checklist
 
 This layer defines how the generated skill should handle problems encountered during test creation and execution.
 

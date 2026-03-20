@@ -1,14 +1,12 @@
 # Examples
 
-Use these examples as concrete input sets when creating a unit testing skill from the shared template.
-
 ## Create Python unit testing skill
 
 - language: Python
 - env: Virtual env `.venv/`, Python 3.11+
 - testing_stack: framework=unittest, assertion=unittest, mock=unittest.mock, coverage=coverage, lint=ruff
 - build_tool: uv
-- project_layout: src=`src` or `src/lambda`, test=`tests/unit`
+- project_layout: src_dir=`src` or `src/lambda`, test_dir=`tests/unit`
 - coverage_target: 80%
 - max_iterations: 5
 - context:
@@ -26,7 +24,7 @@ Use these examples as concrete input sets when creating a unit testing skill fro
 - env: JDK 11+, Maven 3.6+
 - testing_stack: framework=JUnit 5, assertion=AssertJ, mock=Mockito, coverage=JaCoCo, lint=SonarLint
 - build_tool: Maven
-- project_layout: src=`src/main/java`, test=`src/test/java`
+- project_layout: src_dir=`src/main/java`, test_dir=`src/test/java`
 - coverage_target: 80%
 - max_iterations: 5
 - context:
