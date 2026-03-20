@@ -39,7 +39,7 @@ Create or update a branch, commit and push local changes, or cherry-pick specifi
 - Restore stashed changes: `git stash pop`
 - Add changes to staging: `git add <files>`
 - Unstage files: `git restore --staged <files>`
-- Commit changes: `git commit -m <message>`
+- Commit changes: `git commit -m <subject> -m <body>`
 - Push target without force: `git push origin <branch>`
 - Push branch (safe force): `git push origin <branch> --force-with-lease`
 
@@ -53,7 +53,10 @@ ONLY for **Cherry-pick & Push** workflow:
 
 ### Commit message format
 
-`<type>(<scope>)#{workitem}_<short_description>`, where:
+Subject: `<type>(<scope>)#{workitem}_<short_description>`
+Body: a more detailed description of the change, context, or intent.
+
+Where:
 
 - `type`: the `{type}` input value.
   - `feat`: new features or significant changes
@@ -69,9 +72,8 @@ ONLY for **Cherry-pick & Push** workflow:
   - `revert`: reverting a previous commit
   - `release`: changes related to versioning or releases
 - `scope`: optional, area of the codebase affected (e.g., `auth`, `ui`, `api`, `config`, etc.)
-- `workitem`: optional, the work item number provided as input.
+- `workitem`: the work item number provided as input.
 - `short_description`: a short, concise summary of the change, derived from the work item title or change context.
-- `body`: optional, a more detailed description of the change, which can be generated from the work item description and acceptance criteria if available.
 - If the change is breaking, use `!` after `type` or `type(scope)`, and add a `BREAKING CHANGE:` note in the commit body.
 
 ### Branch name format
