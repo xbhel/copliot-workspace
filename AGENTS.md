@@ -1,10 +1,5 @@
 # Agents & Skills Guidelines
 
-## Naming Conventions
-
-- Skill: max 64 characters, use lowercase, action-oriented, and hyphen separation (e.g., create-pull-request) to clearly express the action or capability provided.
-- Agent: max 64 characters, use lowercase, hyphen separation, and a role-based suffix (e.g., -assistant, -expert) to explicitly convey the agent’s responsibility and specialization (e.g., email-assistant).
-
 ## Content Structure
 
 When authoring a **skill file**, organize the content in the following order:
@@ -22,10 +17,10 @@ When authoring a **skill file**, organize the content in the following order:
      - `aliases` (optional): alternative names that can be used for invocation.
 2. `## Goal`
 3. `## Inputs`
-4. `## Outputs` (optional)
-5. `## Context` (optional)
-6. `## Core Principles` (optional)
-7. `## Workflow` (optional)
+4. `## Context` (optional)
+5. `## Core Principles` (optional)
+6. `## Workflow` (optional)
+7. `## Output` (optional)
 8. `## Error Handling` (optional)
 9. `## Examples` (optional)
 

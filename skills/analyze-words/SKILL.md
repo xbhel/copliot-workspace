@@ -30,6 +30,24 @@ For each word, include:
 |-|-|-|-|-|
 |words|A list of words to analyze.| |Yes|user or upstream|
 
+## Core Principles
+
+- Use simple, beginner-friendly English.
+- Prefer common usage over rare or technical meanings.
+- Keep each explanation concise and practical.
+- Include morphology only when it helps understanding.
+- If morphology is unclear or not useful, keep it simple rather than forcing an analysis.
+- Prefer English explanations and examples unless the user asks for another language.
+
+## Workflow
+
+1. Identify the word and its most common part of speech.
+2. Provide up to 3 common meanings in simple English.
+3. Add a useful morphology breakdown when possible.
+4. Add up to 3 common phrases.
+5. Add up to 3 short example sentences.
+6. If multiple words are given, repeat the format for each word and separate sections with `---`.
+
 ## Output
 
 Return one section per word using this format:
@@ -58,24 +76,6 @@ Sentences:
 ```
 
 When multiple words are provided, separate each word block with `---`.
-
-## Core Principles
-
-- Use simple, beginner-friendly English.
-- Prefer common usage over rare or technical meanings.
-- Keep each explanation concise and practical.
-- Include morphology only when it helps understanding.
-- If morphology is unclear or not useful, keep it simple rather than forcing an analysis.
-- Prefer English explanations and examples unless the user asks for another language.
-
-## Workflow
-
-1. Identify the word and its most common part of speech.
-2. Provide up to 3 common meanings in simple English.
-3. Add a useful morphology breakdown when possible.
-4. Add up to 3 common phrases.
-5. Add up to 3 short example sentences.
-6. If multiple words are given, repeat the format for each word and separate sections with `---`.
 
 ## Error Handling
 
