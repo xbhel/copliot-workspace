@@ -13,16 +13,17 @@ Use the following preset details to fill gaps when the workspace or user request
 - env: Virtual env `.venv/`, Python 3.11+
 - testing_stack: framework=unittest, assertion=unittest, mock=unittest.mock, coverage=coverage, lint=ruff
 - build_tool: uv
-- project_layout: src=`src` or `src/lambda`, test=`tests/unit`
+- project_layout: src_dir=`src` or `src/lambda`, test_dir=`tests/unit`
 - coverage_target: 80%
 - max_iterations: 5
 - context:
+  - Generated skill inputs: `project_layout`, `coverage_target`, `max_iterations` (inferred from project or defaulted as above).
   - Test file naming: `test_<module>.py`
-  - Run all tests: `uv run .venv/Scripts/python.exe -m unittest discover -s Tests/Unit -v`
-  - Run specific tests: `uv run .venv/Scripts/python.exe -m unittest {test_module}`
-  - Run with custom runner: `uv run .venv/Scripts/python.exe test_runner.py`
+  - Run all tests: `uv run python -m unittest discover -s tests/unit -v`
+  - Run specific tests: `uv run python -m unittest {test_module}`
+  - Run with custom runner: `uv run python test_runner.py`
   - Lint: `uvx ruff check`
-  - Coverage: `uv run .venv/Scripts/python.exe -m coverage report -m`
+  - Coverage: `uv run python -m coverage report -m`
   - Skip `__init__.py` unless it contains real logic
 
 ## Workflow

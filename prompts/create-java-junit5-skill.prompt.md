@@ -13,8 +13,9 @@ Use the following preset details to fill gaps when the workspace or user request
 - env: JDK 11+
 - testing_stack: framework=JUnit 5, assertion=AssertJ, mock=Mockito, coverage=JaCoCo, lint=SonarLint
 - build_tool: Maven or Gradle (infer from project; default to Maven if ambiguous)
-- project_layout: src=`src/main/java`, test=`src/test/java`
+- project_layout: src_dir=`src/main/java`, test_dir=`src/test/java`
 - context:
+  - Generated skill inputs: `project_layout`, `coverage_target`, `max_iterations` (inferred from project or defaulted as above).
   - Test class naming: `<ClassName>Test.java`
   - Test method naming: `<methodName>_should<ExpectedBehavior>When<Condition>`
   - **Maven commands:**

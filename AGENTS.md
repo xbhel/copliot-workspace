@@ -4,7 +4,7 @@
 
 When authoring a **skill file**, organize the content in the following order:
 
-1. Metadata:
+1. Metadata: Defined at the top of the file.
    - `name`
    - `description`
    - `allowed-tools` (optional)
@@ -14,15 +14,15 @@ When authoring a **skill file**, organize the content in the following order:
      - `author`
      - `mcp-server` (optional)
      - `tags` (optional)
-     - `aliases` (optional): alternative names that can be used for invocation.
-2. `## Goal`
-3. `## Inputs`
-4. `## Context` (optional)
-5. `## Core Principles` (optional)
-6. `## Workflow` (optional)
-7. `## Output` (optional)
-8. `## Error Handling` (optional)
-9. `## Examples` (optional)
+     - `aliases` (optional): alternative invocation names.
+2. `## Goal`: Clear statement of the skill’s purpose and expected outcome.
+3. `## Inputs`: Table of input parameters following the defined Input Schema below.
+4. `## Context` (optional): Background, conventions, or assumptions that inform execution.
+5. `## Core Principles` (optional): Constraints and rules that must be followed.
+6. `## Workflow` (optional): Step-by-step execution process to achieve its goal.
+7. `## Output` (optional): Expected output format and structure.
+8. `## Error Handling` (optional): Rules for handling errors and exceptions.
+9. `## Examples` (optional): Sample inputs and expected outputs demonstrating usage.
 
 **Agents files** should follow a similar structure but may omit sections that are not relevant to their orchestration role.
 
