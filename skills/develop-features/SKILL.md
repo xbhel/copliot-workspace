@@ -1,46 +1,103 @@
 ---
 name: develop-features
-description: A skill to assist with feature development tasks, including code generation, testing, and documentation.
-metadata: 
+description: Guide the full feature development lifecycle — from requirements analysis through design, implementation, testing, and documentation.
+metadata:
   version: 1.0.0
   author: xbhel
-  tags: [development, plan, code generation, testing, documentation]
+  tags: [development, feature, planning, code generation, testing, documentation]
+  aliases: [dev-feature]
 ---
 
 ## Goal
 
-anaylze-requirements.
-code-analysis
+Take `{feature_request}` from raw requirements to a working, tested, and documented implementation by systematically analyzing requirements, designing a solution, implementing code, writing tests, and summarizing the outcome.
 
+## Inputs
 
-Steps:
+| name | description | default | required | source | example |
+| ---- | ----------- | ------- | -------- | ------ | ------- |
+| feature_request | A description of the feature to develop, including its purpose, expected behavior, and any known constraints. | | Yes | user | Add JWT-based authentication to the REST API. |
+| codebase_context | Relevant information about the existing codebase, such as architecture, conventions, key modules, or tech stack. If not provided, it will be derived by exploring the project during workflow step 2. | | No | user or derived | Spring Boot 3, Maven, layered architecture with controller/service/repository. |
+| constraints | Any non-functional requirements, time limits, compatibility requirements, or explicit restrictions. | | No | user | Must remain backward-compatible with existing session-based auth. |
 
-1. Analyze the feature requirements and design specifications.
-  - what is the feature supposed to do?
-  - what are the inputs and outputs?
-  - what are the constraints and edge cases?
-2. Analyze the existing codebase & guidelines to identify relevant components and convenients for integration.
-  - what are the relevant modules and functions in the existing codebase?
-  - what are the coding standards and guidelines to follow?
-3. Ask-loop until requirements are clear and complete.
-  - ask clarifying questions to ensure a clear understanding of the feature's functionality and constraints.
-  - update the feature requirements based on the answers to the clarifying questions.
-  - repeat the process until the feature requirements are clear and complete.
-4. Design the architecture and components needed for the feature.
-  - what are the main components and their responsibilities?
-  - how do the components interact with each other and with the existing codebase?
-5. Plan the details of the implementation.
-  - what data structures and algorithms are needed for the implementation?
-  - A to do list of the implementation steps to tracking progress.
-6. Confirm the implementation plan with the user before proceeding.
-  - review the design and implementation plan with the user to ensure it meets their expectations and requirements
-  - make any necessary adjustments based on user feedback before proceeding with the implementation.
-7. Implement the feature according to the design and plan.
-  - write clean, maintainable, and efficient code that follows the coding standards and guidelines.
-8. Write unit tests and integration tests to ensure the feature works correctly and integrates well with the existing codebase.
-9. Review the implementation and documentation with the user to ensure it meets their expectations and requirements.
-  - get feedback from the user on the implementation and documentation.
-  - make any necessary adjustments based on user feedback to ensure the feature is complete and satisfactory.
-10. Iterate on the implementation and documentation based on user feedback until the feature is complete and satisfactory.
-11. Summarize the feature development process and document the feature, including usage instructions, API documentation, and any relevant design decisions.
-  - write clear and comprehensive documentation that explains how to use the feature, its API, and any relevant design decisions made during the development process.
+## Context
+
+Feature development follows an iterative, confirm-before-code approach:
+
+- Requirements and design are always confirmed with the user before implementation begins.
+- Clarifying questions are asked until the feature requirements are unambiguous.
+- Implementation, tests, and documentation are produced together as a single deliverable.
+
+## Core Principles
+
+- **Understand before implementing:** Never start coding until requirements are fully clear and the design is confirmed.
+- **Follow existing conventions:** Prefer the project's established patterns, naming conventions, and code style over personal preferences.
+- **Test alongside code:** Write unit and integration tests as part of implementation — not as an afterthought.
+- **Minimal, focused changes:** Implement only what is required by the feature. Avoid refactoring unrelated code.
+- **Document decisions:** Record key design choices, trade-offs, and usage instructions so future contributors understand the intent.
+
+## Workflow
+
+1. **Analyze requirements:** Review `{feature_request}` and `{constraints}` to identify:
+   - What the feature must do and what it must not do.
+   - Expected inputs, outputs, and user-facing behavior.
+   - Edge cases and error scenarios.
+
+2. **Analyze the codebase:** Use `{codebase_context}` or explore the project to identify:
+   - Relevant modules, classes, functions, and entry points.
+   - Existing coding standards, patterns, and guidelines to follow.
+   - Integration points where the new feature will connect to existing code.
+
+3. **Clarify requirements (ask-loop):** Ask targeted questions to resolve any ambiguity. Repeat until requirements are fully clear:
+   - Propose your current understanding and ask the user to confirm or correct it.
+   - Identify and resolve open questions about behavior, edge cases, or constraints.
+   - Update the working requirements based on user responses before proceeding.
+
+4. **Design the solution:** Define the architecture and components needed:
+   - List the components to create or modify and their responsibilities.
+   - Describe how components interact with each other and with the existing codebase.
+   - Identify the data structures, algorithms, and APIs involved.
+
+5. **Plan the implementation:** Produce a concrete, trackable plan:
+   - Break the implementation into an ordered to-do list of steps.
+   - Flag any steps with significant risk or uncertainty.
+
+6. **Confirm with the user:** Present the design and implementation plan for approval:
+   - Summarize the proposed solution clearly.
+   - Highlight trade-offs or alternatives considered.
+   - Incorporate any user feedback and adjust the plan before proceeding.
+
+7. **Implement the feature:** Write clean, maintainable code following project conventions:
+   - Execute the implementation plan step by step.
+   - Track progress against the to-do list and report completion of each step.
+
+8. **Write tests:** Add unit and integration tests covering:
+   - Happy path and core functionality.
+   - Edge cases and error scenarios identified in step 1.
+   - Integration with existing components.
+
+9. **Review and iterate:** Present the implementation to the user for feedback:
+   - Walk through key code sections and test results.
+   - Apply requested changes and re-review until the feature is satisfactory.
+
+10. **Document the feature:** Produce concise documentation covering:
+    - Usage instructions and examples.
+    - Public API or interface description.
+    - Key design decisions and trade-offs made during development.
+
+## Output
+
+- Implemented feature code following project conventions.
+- Unit and integration tests covering the feature's behavior and edge cases.
+- A brief summary including:
+  - What was built and how it works.
+  - Key design decisions and trade-offs.
+  - Usage instructions or API documentation.
+  - Any known limitations or follow-up items.
+
+## Error Handling
+
+- If `{feature_request}` is too vague to proceed, ask clarifying questions before doing any analysis or design work.
+- If a design conflict or technical blocker arises during implementation, stop and report the issue to the user rather than guessing a resolution.
+- If existing code lacks clear conventions, derive a reasonable approach from surrounding code and confirm with the user before applying it broadly.
+- If a test cannot be written for a section of code (e.g., due to missing test infrastructure), document the gap and the reason clearly.
