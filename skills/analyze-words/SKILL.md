@@ -3,8 +3,8 @@ name: analyze-words
 description: Analyze words and provide pronunciation, part of speech, beginner-friendly meanings, morphology, common phrases, and example sentences.
 metadata: 
   version: 1.0.0
+  author: xbhel
   tags: [word analysis, linguistics, language learning]
-  owner: xbhel
 ---
 
 ## Goal

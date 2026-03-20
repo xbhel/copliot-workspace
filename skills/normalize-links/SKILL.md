@@ -3,20 +3,20 @@ name: normalize-links
 description: Extract links from text and convert them into a consistent markdown link format.
 metadata: 
   version: 1.0.0
+  author: xbhel
   tags: [link, normalization, url, markdown]
-  owner: xbhel
 ---
 
 ## Goal
 
 Extract links from mixed content (raw URLs, markdown links, or mixed prose) and convert them into a consistent markdown link format:
 
-`[{from}/{owner}/{type}/{title}]({url}): {description}`
+`[{from}/{author}/{type}/{title}]({url}): {description}`
 
 Fields:
 
 - `from`: 2-20 chars, lowercased ASCII, inferred from domain/brand.
-- `owner`: Optional, 2-20 chars, lowercased ASCII, inferred from domain/brand or content creator.
+- `author`: Optional, 2-20 chars, lowercased ASCII, inferred from domain/brand or content creator.
 - `type`: 2-15 chars, lowercased ASCII, inferred from URL path or content. such as `article`, `video`, `repo`, `docs`, `blog`, `news`, `forum`, `wiki`, `industry`, `report` etc.
 - `title`: kebab-case, lowercased ASCII, max 60 chars.
 - `url`: The URL of the link.
@@ -34,7 +34,7 @@ Output one normalized link per detected URL and nothing else.
 
 ## Core Principles 
 
-- When `owner` and `from` are the same, only include `from` to avoid redundancy.
+- When `author` and `from` are the same, only include `from` to avoid redundancy.
 
 ## Examples
 
