@@ -6,6 +6,7 @@ metadata:
   version: 1.0.0
   author: xbhel
   tags: [git, commit, push, cherry-pick]
+  aliases: [gcp]
 ---
 
 ## Goal
@@ -53,8 +54,9 @@ ONLY for **Cherry-pick & Push** workflow:
 
 ### Commit message format
 
-Subject: `<type>(<scope>)#{workitem}_<short_description>`
-Body: a more detailed description of the change, context, or intent.
+Subject: `<type>(<scope>)#{workitem}: <short_description>`
+
+Body: Detailed description of the change, context, and intent. MUST use a Markdown list.
 
 Where:
 
