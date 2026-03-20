@@ -3,8 +3,8 @@ name: unit-testing-skill-creator
 description: Create or adapt unit testing skills across languages and testing stacks from a shared template.
 metadata: 
   version: 1.0.0
+  author: xbhel
   tags: [unit testing, test automation, meta-skill, template]
-  owner: xbhel
 ---
 
 ## Goal

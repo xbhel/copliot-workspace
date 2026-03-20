@@ -1,11 +1,11 @@
 ---
 name: git-commit-and-push
 description: Create or update a branch, commit and push local changes, or cherry-pick specified commits onto a target branch.  
+allowed-tools: Bash(git {remote,rev-parse,branch,checkout,status,log,diff,fetch,rebase,stash,add,restore,commit,push,switch,pull,cherry-pick}:*)
 metadata:
   version: 1.0.0
-  tools: Bash(git:*)
+  author: xbhel
   tags: [git, commit, push, cherry-pick]
-  owner: xbhel
 ---
 
 ## Goal

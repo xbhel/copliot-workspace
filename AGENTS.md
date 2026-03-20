@@ -2,7 +2,7 @@
 
 ## Naming Conventions
 
-- Skill: use lowercase, action-oriented:, and hyphen separation (e.g., creating-pull-request) to clearly express the action or capability provided.
+- Skill: max 64 characters, use lowercase, action-oriented, and hyphen separation (e.g., creating-pull-request) to clearly express the action or capability provided.
 - Agent: use lowercase, hyphen separation, and a role-based suffix (e.g., -assistant, -expert) to explicitly convey the agent’s responsibility and specialization (e.g., email-assistant).
 
 ## Content Structure
@@ -12,13 +12,14 @@ When authoring a **skill file**, organize the content in the following order:
 1. Metadata:
    - `name`
    - `description`
-   - `allowed-tools` (optional)
+   - `allowed-tools` (optional).
    - `depends-on` (optional)
    - `metadata`:
      - `version`
-     - `owner`
+     - `author`
      - `mcp-server` (optional)
      - `tags` (optional)
+     - `aliases` (optional): alternative names that can be used for invocation.
 2. `## Goal`
 3. `## Inputs`
 4. `## Outputs` (optional)
