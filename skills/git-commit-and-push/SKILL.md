@@ -19,7 +19,7 @@ Create or update a branch, commit and push local changes, or cherry-pick specifi
 |---|---|---|---|---|---|
 |source|`Commit & Push`: branch to commit and push. `Cherry-pick & Push`: branch that provides the commits.|Current branch or created branch|Yes|derived||
 |target|`Commit & Push`: sync base branch. `Cherry-pick & Push`: clean base branch for the new destination branch.|`dev`|No|user or default||
-|type|The type of change being made. Used for the commit message and new branch name (`{type}/{workitem}`).|`feat`|No|user or derived|`feat`, `fix`, `chore`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `revert`, `release`|
+|type|The type of change being made. Used for the commit message and new branch name.|`feat`|No|user or derived|`feat`, `fix`, `chore`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `revert`, `release`|
 |workitem|The work item number this change belongs to.|Inferred from branch name (e.g., `feat/12345` → `12345`), otherwise auto-generated 7-digit random number|No|user or derived||
 
 ## Context
@@ -78,9 +78,26 @@ Where:
 - `short_description`: a short, concise summary of the change, derived from the work item title or change context.
 - If the change is breaking, use `!` after `type` or `type(scope)`, and add a `BREAKING CHANGE:` note in the commit body.
 
+Example:
+
+- Subject: `feat(auth)!#12345: switch to JWT authentication`
+- Body:
+```markdown
+- Replace session-based authentication with JWT.
+- Update the login flow and token validation.
+- BREAKING CHANGE: Clients must send a bearer token instead of using session cookies.
+```
+
 ### Branch name format
 
-`{type}/{workitem}`
+`{type}/{workitem}-<descriptive_name>`
+
+Where:
+
+  - `type` and `workitem` are the same as in the commit message.
+  - `descriptive_name`: max 20 characters, hyphen-separated description of the change, derived from the work item title or change context.
+
+Example: `feat/12345-add-user-auth`
 
 ## Core Principles
 

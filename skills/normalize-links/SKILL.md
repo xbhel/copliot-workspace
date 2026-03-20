@@ -28,13 +28,13 @@ Fields:
 |-|-|-|-|-|
 |text|text containing raw URL, markdown link, or mixed prose with links.| |Yes|user or upstream|
 
-## Output
-
-Output one normalized link per detected URL and nothing else.
-
 ## Core Principles 
 
 - When `author` and `from` are the same, only include `from` to avoid redundancy.
+
+## Output
+
+Output one normalized link per detected URL and nothing else.
 
 ## Examples
 
