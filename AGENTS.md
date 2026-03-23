@@ -43,7 +43,7 @@ Fields:
 
 - `name`: The name of the input parameter, used for referencing within the skill or agent by `{name}`.
 - `description`: A brief explanation of the input parameter's purpose.
-- `default`: A default value for the input parameter, if applicable.
+- `default` (optional): A default value for the input parameter.
 - `required`: Whether the input parameter must be provided before execution (Yes/No).
   - `Yes`: The parameter must be provided by the user or inferred before execution.
   - `No`: The parameter is optional and may have a default value or be inferred if not provided.
@@ -53,8 +53,8 @@ Fields:
   - `upstream`: The value is passed down from an upstream agent or skill in the workflow.
   - `default`: The value is a predefined default that can be used if no other source provides it.
   - combinations of the above (e.g., `user or derived`). Use short combinations joined by `or`.
-- `allowed values`: A list of permissible values for the input parameter, if applicable.
-- `example`: An example value for the input parameter, if applicable.
+- `allowed values` (optional): A list of permissible values for the input parameter.
+- `example` (optional): An example value for the input parameter.
 
 The optional columns may be omitted entirely from the table if they are not applicable to any input parameters.
 
