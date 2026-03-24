@@ -33,7 +33,7 @@ This skill composes six layers into a complete unit testing skill. Each layer is
 - **Layer 1: Language-agnostic principles** for test design, coverage, isolation, and readability.
 - **Layer 2: Language-specific adapters** for the target framework, assertions, mocks, project layout, and test execution workflow.
 - **Layer 3: Optional domain or framework extensions** for context-specific patterns, constraints, and examples such as Spring, Flink, or Vue.
-- **Layer 4: Iterative test-and-fix workflow** defining the loop that runs tests, fixes failures, and improves coverage, controlled by {max_iterations} and {coverage_target}.
+- **Layer 4: Iterative test-and-fix workflow** defining the loop that runs tests, fixes failures, and improves coverage, controlled by `{max_iterations}` and `{coverage_target}`.
 - **Layer 5: Output** defining the standardized summary the generated skill must produce after execution.
 - **Layer 6: Error handling** defining how the generated skill should respond to failures, blockers, and untestable code.
 
