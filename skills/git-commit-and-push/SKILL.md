@@ -1,6 +1,6 @@
 ---
 name: git-commit-and-push
-description: Create or update a branch, commit and push local changes, or cherry-pick specified commits onto a target branch.  
+description: Create or update a branch, commit and push local changes, or cherry-pick specified commits onto a branch created from a base branch.  
 allowed-tools: Bash(git {remote,rev-parse,branch,checkout,status,log,diff,fetch,rebase,stash,add,restore,commit,push,switch,pull,cherry-pick}:*)
 metadata:
   version: 1.0.0
@@ -11,14 +11,14 @@ metadata:
 
 ## Goal
 
-Create or update a branch, commit and push local changes, or cherry-pick specified commits from `source` onto a new branch created from `target`, then push that new branch.
+Create or update a branch, commit and push local changes, or cherry-pick specified commits from `branch` onto a new branch created from `base`, then push that new branch.
 
 ## Inputs
 
 |name|description|default|required|source|allowed values|
 |---|---|---|---|---|---|
-|source|`Commit & Push`: branch to commit and push. `Cherry-pick & Push`: branch that provides the commits.|Current branch or created branch|Yes|derived||
-|target|`Commit & Push`: sync base branch. `Cherry-pick & Push`: clean base branch for the new destination branch.|`dev`|No|user or default||
+|branch|`Commit & Push`: branch to commit and push. `Cherry-pick & Push`: branch that provides the commits.|Current branch or created branch|Yes|derived||
+|base|`Commit & Push`: branch to sync from before committing. `Cherry-pick & Push`: clean base branch for the new destination branch.|`dev`|No|user or default||
 |type|The type of change being made. Used for the commit message and new branch name.|`feat`|No|user or derived|`feat`, `fix`, `chore`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `revert`, `release`|
 |workitem|The work item number this change belongs to.|Inferred from branch name (e.g., `feat/12345` → `12345`), otherwise auto-generated 7-digit random number|No|user or derived||
 
@@ -29,26 +29,26 @@ Create or update a branch, commit and push local changes, or cherry-pick specifi
 - Get repo URL: `git remote get-url origin`
 - Get repo root: `git rev-parse --show-toplevel`
 - Get current branch: `git branch --show-current`
-- Create a new branch: `git checkout -b <new_branch> origin/<branch>`
+- Create a new branch: `git checkout -b <new_branch> origin/<target>`
 - Check working tree status: `git status --short`
-- Log commits: `git log origin/<branch>..HEAD --oneline`
-- List changed files: `git diff --name-status origin/<branch>..HEAD`
+- Log commits: `git log origin/<target>..HEAD --oneline`
+- List changed files: `git diff --name-status origin/<target>..HEAD`
 - Inspect changes: `git diff` and `git diff --cached`
-- Fetch latest from branch: `git fetch origin <branch>`
-- Rebase current branch on branch: `git rebase origin/<branch>`
+- Fetch latest from branch: `git fetch origin <target>`
+- Rebase current branch on branch: `git rebase origin/<target>`
 - Stash changes: `git stash push -m <message> --include-untracked`
 - Restore stashed changes: `git stash pop`
 - Add changes to staging: `git add <files>`
 - Unstage files: `git restore --staged <files>`
 - Commit changes: `git commit -m <subject> -m <body>`
-- Push target without force: `git push origin <branch>`
-- Push branch (safe force): `git push origin <branch> --force-with-lease`
+- Push branch without force: `git push origin <target>`
+- Push branch (safe force): `git push origin <target> --force-with-lease`
 
 ONLY for **Cherry-pick & Push** workflow:
 
-- Switch branch: `git switch <branch>`
-- Pull latest target: `git pull origin <branch>`
-- Filter commits: `git log --oneline origin/<branch> [--grep="<keyword>"] [--author="<name>"] [--after="<date>"] [--before="<date>"]`
+- Switch branch: `git switch <target>`
+- Pull latest from branch: `git pull origin <target>`
+- Filter commits: `git log --oneline origin/<target> [--grep="<keyword>"] [--author="<name>"] [--after="<date>"] [--before="<date>"]`
 - Cherry-pick commits: `git cherry-pick <commit>...`
 - Abort/continue/skip cherry-pick: `git cherry-pick --abort/--continue/--skip`
 
@@ -94,8 +94,8 @@ Example:
 
 Where:
 
-  - `type` and `workitem` are the same as in the commit message.
-  - `descriptive_name`: max 20 characters, hyphen-separated description of the change, derived from the work item title or change context.
+- `type` and `workitem` are the same as in the commit message.
+- `descriptive_name`: max 20 characters, hyphen-separated description of the change, derived from the work item title or change context.
 
 Example: `feat/12345-add-user-auth`
 
@@ -110,27 +110,27 @@ When user asks to move, apply, or merge specific commits from one branch to anot
 
 ### Commit & Push 
 
-1. If the current branch is `{target}`, `dev`, `main`, or `master`, MUST create a new branch from it and switch to it. NEVER commit or push directly to these branches.
+1. If the current branch is `{base}`, `dev`, `main`, or `master`, MUST create a new branch from it and switch to it. NEVER commit or push directly to these branches.
 2. Stash any uncommitted or untracked changes to keep the working tree clean for the next step.
-3. Fetch the latest `origin/{target}` and rebase the current branch on top of it.
+3. Fetch the latest `origin/{base}` and rebase the current branch on top of it.
 4. Restore the stash if one was created in step 2.
 5. Stage and commit any remaining changes using the commit message format defined in `Context`. 
 6. Push the branch using the following command.
 
 ```bash
-git fetch origin && git push origin <current_branch> --force-with-lease || git push origin <current_branch>
+git push origin <current_branch> --force-with-lease || git push origin <current_branch> || git push -u origin <current_branch>
 ```
 
 ### Cherry-pick & Push
 
-1. If commits are not explicit SHAs, resolve them first from `{source}` using the appropriate commit filters from `Context` (by keyword, author, date, or combination). List the matched commits and confirm with the user before proceeding.
-2. Switch to the target branch and pull the latest changes.
-3. MUST create a new branch from `{target}` and switch to the new branch. `{target}` MUST remain a clean base branch and MUST NOT receive the cherry-picked commits directly.
+1. If commits are not explicit SHAs, resolve them first from `{branch}` using the appropriate commit filters from `Context` (by keyword, author, date, or combination). List the matched commits and confirm with the user before proceeding.
+2. Switch to the base branch and pull the latest changes.
+3. MUST create a new branch from `{base}` and switch to the new branch. `{base}` MUST remain a clean base branch and MUST NOT receive the cherry-picked commits directly.
 4. Cherry-pick the resolved commits onto the current branch.
 5. Push the current branch to the remote.
 
 ```bash
-git push origin <current_branch>
+git push origin <current_branch> || git push -u origin <current_branch>
 ```
 
 ## Output

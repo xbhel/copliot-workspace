@@ -72,6 +72,10 @@ If input parameters are required:
 
 ## Core Principles
 
-- Input parameters must be referenced using the `{}` syntax within the skill or agent definition.
-- Never ask the user for information that can be inferred or obtained through allowed tools or commands.
-- Never assume that the user has provided all necessary information. Always check for missing inputs and ask for them explicitly.
+- MUST use the correct model for the task, preferring the latest version:
+  - GPT for reasoning
+  - Gemini for creativity
+  - Claude for orchestration and coding
+- Reference input parameters with {} in skills/agents.
+- Don’t ask for info that can be inferred or fetched via tools.
+- Don’t assume completeness—check for missing inputs and request them explicitly.
