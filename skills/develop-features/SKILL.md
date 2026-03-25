@@ -21,11 +21,12 @@ Provide a structured approach to developing new features. Instead of jumping str
 Building new features is not just about writing code. You MUST:
 
 - Ask clarifying questions until the requirements are unambiguous.
+- Prefer listing all questions at once instead of asking them one by one.
 - Understand the codebase before making changes.
 - Design with existing architecture and patterns in mind.
 - Confirm the design with the user before implementation.
 - Implement only what the feature requires—avoid over-engineering and unrelated changes.
-- Write tests alongside your code, not as an afterthought.
+- Prefer test-first development when practical; do not treat tests as a post-implementation task.
 - Review the code for quality, readability, and maintainability.
 
 ## Workflow
@@ -45,13 +46,10 @@ Example:
 ```
 User: Implement a Python calculator.
 
-You: I need a few details to make sure I build the right calculator:
-  1. Interface and interaction: Should this be a command-line tool (CLI) or a GUI? 
-    - If CLI, should it be interactive (like a prompt) or run once with an input (e.g., `python calc.py "2 + 2"`)?
-  2. Supported operation: What operations should it support?
-    - Just basic math (+, -, *, /) or also things like powers, square roots, etc.?
-  3. Error handling and edge cases: How should it handle cases like division by zero or invalid input?
-  ...
+You: To clarify the requirements:
+  1. Interface: CLI (interactive or one-off arguments) or GUI?
+  2. Operations: Basic math (+, -, *, /) or advanced (powers, roots)?
+  3. Error Handling: How to handle division by zero or invalid inputs?
 ```
 
 Summarize the clarified requirements and **confirm them with the user** before moving on.
@@ -73,25 +71,12 @@ Summarize your findings before moving on.
 Example output:
 
 ```
-Here's what I found after analyzing the codebase:
-
-1. Relevant modules and files:
-   - `src/operations/` for math modules, `src/cli.py` as entry point, `src/utils/parser.py` for shared parsing.
-   - New calculator logic fits in `src/operations/`.
-2. Architectural patterns:
-   - Command-dispatch: CLI parses input → dispatches to an operation module → returns formatted output.
-3. Coding standards and conventions:
-   - Pure functions with type hints and docstrings; errors raised as `ValueError`.
-4. Reference implementations:
-   - `src/operations/converter.py` — similar parse-dispatch-return pattern; can adapt for calculator.
-5. Integration points and dependencies:
-   - Register a new subcommand in `src/cli.py`; reuse `tokenize()` from `src/utils/parser.py`.
-6. Testing setup and coverage:
-   - `tests/` with `pytest`, one `test_<module>.py` per module, parametrized cases covering 
-     valid/invalid inputs and boundary values.
-7. Build and run:
-   - `uv run python -m src.cli` to run; `uv run pytest` to test.
-   ...
+**Codebase Analysis:**
+- **Modules:** `src/cli.py` (entry), `src/operations/` (logic target), `src/utils/parser.py` (shared).
+- **Patterns:** Command-dispatch.
+- **Conventions:** Pure functions, type hints, docstrings. Errors raise `ValueError`.
+- **Reference:** Adapt `src/operations/converter.py` pattern.
+- **Testing:** `pytest` in `tests/`, covering valid/invalid paths. Run via `uv run pytest`.
 ```
 
 ### Phase 3: Validate & Refine Requirements
@@ -106,9 +91,27 @@ Validate the clarified requirements against the codebase findings, resolving any
 6. **Suggest Alternative Approaches (if needed):** Propose simpler or better-aligned approaches when the current direction is too complex or misaligned.
 7. **Consolidate and Confirm:** List all items needing user feedback (open questions, assumptions, trade-offs, or alternative approaches) and wait for answers.
 
+Example output for feedback:
+
+```
+**Pending Clarifications:**
+1. **Parser:** `src/utils/parser.py` only accepts spaced input like `2 + 2`. Should we add support for `2+2`, or keep the current rule?
+2. **Division by Zero:** Should the CLI catch `ValueError` and show a friendly message?
+```
+
 After completing this phase, the requirements should be fully clarified and enriched with codebase insights, ready for design and implementation. 
 
-Before proceeding, MUST confirm the refined requirements with the user, including relevant codebase context such as files, test stack, patterns, and other insights.
+Before proceeding, MUST confirm the refined requirements with the user, including relevant codebase context such as files, test stack, patterns, and other helpful insights.
+
+Example output for refined requirements:
+
+```
+**Refined Requirements:**
+- **Scope:** Add `+`, `-`, `*`, `/` operations in `src/operations/`, following the `converter.py` pattern.
+- **Constraints:** Keep spaced input only. No `parser.py` changes. (Confirmed)
+- **Edge Cases:** Raise `ValueError` for division by zero and handle it in the CLI.
+- **Testing:** Add tests for valid operations and division-by-zero behavior using `pytest`.
+```
 
 ### Phase 4: Design the Solution
 
@@ -117,10 +120,9 @@ Design the solution based on the refined requirements and codebase context, focu
 - **Architecture & Components:** Define the high-level architecture, key components, design patterns, abstractions.
 - **Data Flow & Interfaces:** Map data flow, inputs/outputs, and interfaces, indicating related functions or files.
 - **Error Handling & Edge Cases:** Design handling of errors and edge cases.
-- **Implementation Steps:** Break the design into an to-do list for execution and tracking. Each item should be small enough to implement and validate independently.
 - **Testing Strategy:** Plan how to test the feature, including unit, integration, and edge cases.
 - **Validation Strategy:** Define how to validate the feature against requirements, including success criteria and metrics.
-- **Documentation Plan:** Outline required documentation (code comments, user guides, API docs) and assign responsibility.
+- **Documentation Plan:** Outline required documentation (code comments, user guides, API docs).
 - **Review & Feedback:** Plan design-level reviews, feedback loops, and iterative improvements.
 
 **Design Multiple Approaches**
@@ -136,19 +138,65 @@ You MUST:
 - Review all approaches and evaluate trade-offs
 - Form an opinion on which approach best fits this task
 - Present a comparison with recommendations
-- Confirm the chosen approach with the user before implementation
+- **Confirm the chosen approach with the user** before implementation
 
-## Phase 5: Implementation
+Example output:
+
+```
+**Design Options:**
+
+**A. Minimal Changes**
+- Add `src/operations/math.py` with `add`, `subtract`, `multiply`, `divide`.
+- Add a `calc` subcommand in `src/cli.py`.
+- *Pros:* Small change, matches current patterns.
+- *Cons:* Harder to extend for advanced math.
+
+**B. Clean Architecture**
+- Replace parser logic with AST-based parsing.
+- Add a calculator service or plugin layer.
+- *Pros:* Easier to extend later.
+- *Cons:* Too much change for current scope.
+
+**C. Pragmatic Balance (Recommended)**
+- Add `src/operations/math.py` now.
+- Keep the current parser, but isolate command handling so later parser changes stay local.
+- *Pros:* Good balance of speed, clarity, and future flexibility.
+- *Cons:* Slightly more setup than the minimal approach.
+
+*Recommendation:* Approach C. Proceed?
+```
+
+### Phase 5: Plan the Implementation
+
+After the user confirms the chosen approach, create a TDD-first to-do list for execution and tracking. Make each step map to a clear behavior and a concrete code change, and keep it small enough to implement and validate independently.
+
+Example output:
+
+```
+**Implementation Plan for Approach C:**
+1. Add failing tests for math operations and division-by-zero behavior.
+2. Implement `src/operations/math.py` until those tests pass.
+3. Add a failing CLI test for the `calc` command flow and error handling.
+4. Update `src/cli.py` until the CLI tests pass.
+5. Refactor the touched code, then update docs and usage examples.
+
+**Checkpoints:**
+- After step 2, run the math tests and verify they pass.
+- After step 4, run the CLI tests and verify the command flow matches existing patterns.
+```
+
+### Phase 6: Implementation
 
 Implement the feature according to the design, You MUST:
 
 - Follow the design, chosen approach, and implementation steps
 - Apply the relevant context and patterns identified in Phases 2 and 3
+- Write or update tests first when practical, then implement until the tests pass
 - Write clean, maintainable code that follows existing standards and conventions
-- Implement tests alongside the code, covering relevant cases and edge cases
-- Document the code and any necessary user-facing documentation.
+- Keep tests focused on the required behavior and edge cases, and refactor after the test suite is green
+- Document the code with clear, accurate, and concise doc-strings and inline comments.
 
-## Phase 6: Quality Review & Iteration
+### Phase 7: Quality Review & Iteration
 
 After implementation, review the code for quality, readability, and maintainability. You MUST:
 
@@ -159,7 +207,7 @@ After implementation, review the code for quality, readability, and maintainabil
 - Verify that lints and checks are passing
 - Review documentation for clarity and completeness
 
-If issues are found, iterate on the implementation until they are resolved and the feature is ready for delivery. Follow an `implement and test -> review` loop until the feature meets the requirements and quality bar.
+Iterate in a `test → implement → refactor → review` loop until all issues are resolved and the feature meets requirements and quality standards.
 
 #### Out-of-Scope Issues
 
@@ -174,3 +222,80 @@ Rate each potential issue on a scale from 0-100:
 - **50:** Moderately confident. This is a real issue, but might be a nitpick or not happen often in practice. Not very important relative to the rest of the changes.
 - **75:** Highly confident. Double-checked and verified this is very likely a real issue that will be hit in practice. The existing approach is insufficient. Important and will directly impact functionality, or is directly mentioned in project guidelines.
 - **100:** Absolutely certain. Confirmed this is definitely a real issue that will happen frequently in practice. The evidence directly confirms this.
+
+Example output:
+
+```
+**Quality Review:**
+- Requirements: Met.
+- Tests: Passed (`pytest`).
+- Lint: Passed (`ruff`).
+
+**Out-of-Scope Issues:**
+- **Confidence 85:** The CLI still shows raw stack traces for unhandled `ValueError`.
+  *Suggestion:* Add a friendly top-level error message. Should I include that change?
+```
+
+### Phase 8: Documentation
+
+Document what was built, how it works, how to use it, including:
+
+- A short feature overview and expected behavior
+- Key design decisions and trade-offs
+- Changed files and components
+- Usage instructions and examples
+- Public API or interface
+- Any relevant context for future maintainers or users
+- Suggested next steps or improvements
+
+Example output:
+
+```
+**Feature Complete:** Calculator CLI
+
+**What was built:**
+- Math operations for `+`, `-`, `*`, `/`
+- A `calc` command integrated into the existing CLI flow
+- Division-by-zero handling with a user-friendly error path
+
+**Key decisions:**
+- Kept the existing parser unchanged
+- Used a small math module instead of a larger calculator abstraction
+- Isolated command handling so future parser changes stay local
+
+**Files modified:**
+- `src/operations/math.py`
+- `src/cli.py`
+- `tests/test_math.py`
+
+**Usage / Interface:**
+- `calc "10 / 2"` returns `5`
+- Supported operators: `+`, `-`, `*`, `/`
+
+**Maintainer notes:**
+- Add new operators in `src/operations/math.py`
+- Keep CLI parsing and user-facing error handling in `src/cli.py`
+
+**Suggested next steps:**
+- Add more CLI input validation
+- Add more operator coverage if scope expands
+- Update README examples if CLI behavior changes
+```
+
+## Output
+
+A clear and concise final delivery summary including:
+
+- Feature outcome and current status.
+- What was built and how it works.
+- Key design decisions and trade-offs.
+- Changed files and components.
+- Tests, validation, and quality check results.
+- Reported issues, risks, or follow-up items.
+- Documentation completed.
+
+## Error Handling
+
+- **Long tasks:** If a task takes too long, split it into subagents to run steps in parallel, then combine results. Common in code analysis or design phases.
+- **Missing tools:** If required tools or dependencies are missing during implementation, stop, report with context, and request support.
+- **Implementation blockers:** If a conflict or technical blocker arises during implementation, stop, report with context, and request guidance.
