@@ -9,7 +9,7 @@ Open a pull request from a source branch to a target branch, using a repository 
 |source|Source branch for the pull request.|current branch|No|user or derived|
 |target|Target branch for the pull request.|`dev`|No|user or default|
 |reviewers|Reviewers to request on the pull request.|current user|No|user or derived|
-|assignees|Assignees to add to the pull request.||No|user or derived|
+|assignees|Assignees to add to the pull request.||current user|user or derived|
 
 ## Context
 
@@ -25,13 +25,6 @@ Fields are derived from the source branch name, user input, or commits in `targe
 - `short_description`: concise summary derived from the commits or user input.
 
 ### PR Body Template
-
-- Prefer repository PR templates if present in
-  - `.github/PULL_REQUEST_TEMPLATE.md`
-  - `.github/pull_request_template.md`
-  - `.github/PULL_REQUEST_TEMPLATE/*.md`
-- If multiple templates exist without clear precedence, ask the user to select one.
-- If no template exists, use fallback:
 
 ```markdown
 ## Summary
@@ -50,13 +43,11 @@ Fields are derived from the source branch name, user input, or commits in `targe
 
 ## Workflow
 
-1. Resolve `{source}`, `{target}`, `{reviewers}`, and `{assignees}` from the request and context.
-2. Compute commit diff set using `git log --oneline {target}..{source}`.
-3. Derive PR title from the commit diff set using the format defined in `Context`.
-4. Check for a repository pull request template.
-5. Build PR body using repository template if available, otherwise use fallback template in `Context`.
-6. Create the pull request with resolved title and body.
-7. Assign reviewers and assignees if provided or derivable.
+1. **Resolve Inputs**: Determine `{source}`, `{target}`, `{reviewers}`, and `{assignees}` from the request and context.
+2. **Generate Title**: Use `git log --oneline {target}..{source}` to derive the PR title per the `Context` format.
+3. **Select Template**: Look for a PR template in `.github/` (ask the user if multiple exist). Fallback to the `Context` template if none are found.
+4. **Create PR**: Build the PR body with the selected template and open the pull request.
+5. **Assign**: Add the resolved `{reviewers}` and `{assignees}` if provided.
 
 ## Output
 
