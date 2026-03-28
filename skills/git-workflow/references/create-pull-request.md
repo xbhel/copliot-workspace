@@ -26,13 +26,6 @@ Fields are derived from the source branch name, user input, or commits in `targe
 
 ### PR Body Template
 
-- Prefer repository PR templates if present in
-  - `.github/PULL_REQUEST_TEMPLATE.md`
-  - `.github/pull_request_template.md`
-  - `.github/PULL_REQUEST_TEMPLATE/*.md`
-- If multiple templates exist without clear precedence, ask the user to select one.
-- If no template exists, use fallback:
-
 ```markdown
 ## Summary
 <brief summary of the change>
@@ -50,13 +43,11 @@ Fields are derived from the source branch name, user input, or commits in `targe
 
 ## Workflow
 
-1. Resolve `{source}`, `{target}`, `{reviewers}`, and `{assignees}` from the request and context.
-2. Compute commit diff set using `git log --oneline {target}..{source}`.
-3. Derive PR title from the commit diff set using the format defined in `Context`.
-4. Check for a repository pull request template.
-5. Build PR body using repository template if available, otherwise use fallback template in `Context`.
-6. Create the pull request with resolved title and body.
-7. Assign reviewers and assignees if provided or derivable.
+1. **Resolve Inputs**: Determine `{source}`, `{target}`, `{reviewers}`, and `{assignees}` from the request and context.
+2. **Generate Title**: Use `git log --oneline {target}..{source}` to derive the PR title per the `Context` format.
+3. **Select Template**: Look for a PR template in `.github/` (ask the user if multiple exist). Fallback to the `Context` template if none are found.
+4. **Create PR**: Build the PR body with the selected template and open the pull request.
+5. **Assign**: Add the resolved `{reviewers}` and `{assignees}` if provided.
 
 ## Output
 
