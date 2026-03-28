@@ -9,7 +9,7 @@ Open a pull request from a source branch to a target branch, using a repository 
 |source|Source branch for the pull request.|current branch|No|user or derived|
 |target|Target branch for the pull request.|`dev`|No|user or default|
 |reviewers|Reviewers to request on the pull request.|current user|No|user or derived|
-|assignees|Assignees to add to the pull request.||No|user or derived|
+|assignees|Assignees to add to the pull request.||current user|user or derived|
 
 ## Context
 
