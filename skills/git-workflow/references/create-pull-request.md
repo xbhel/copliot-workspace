@@ -19,7 +19,7 @@ Open a pull request from a source branch to a target branch, using a repository 
 
 Fields are derived from the source branch name, user input, or commits in `target..source`:
 
-- `type`: The type of change being made, such as `feat`, `fix`, `chore`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `revert`, `release`.
+- `type`: The type of changes, such as `feat`, `fix`, `chore`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `revert`, `release`.
 - `scope`: optional, area of the codebase affected (e.g., auth, ui, api, config).
 - `workitem`: optional, reference to a work item or issue number.
 - `short_description`: concise summary derived from the commits or user input.
@@ -50,8 +50,8 @@ Fields are derived from the source branch name, user input, or commits in `targe
 
 ## Workflow
 
-1. Resolve source, target, reviewers, and assignees from the request and context.
-2. Compute commit diff set using `git log --oneline target..source`.
+1. Resolve `{source}`, `{target}`, `{reviewers}`, and `{assignees}` from the request and context.
+2. Compute commit diff set using `git log --oneline {target}..{source}`.
 3. Derive PR title from the commit diff set using the format defined in `Context`.
 4. Check for a repository pull request template.
 5. Build PR body using repository template if available, otherwise use fallback template in `Context`.

@@ -52,7 +52,7 @@ Use the matching reference under `references/` based on the user's intent:
 - Use the commands listed in the `Context` section to perform common Git operations efficiently.
 - MUST read and follow the selected reference before executing any action.
 - MUST execute multiple actions in the required order if the request spans more than one.
-- MUST combine consecutive commands with no dependency on each other's output using `&& ` in a single execution to reduce round-trips.
+- MUST combine consecutive commands with no dependency on each other's output using `&&` in a single execution to reduce round-trips.
 
 ## Workflow
 
