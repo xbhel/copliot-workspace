@@ -38,16 +38,23 @@ Example:
 
 ```markdown
 Subject: feat(auth)!#1234567: switch to JWT authentication
+
 Body:
 Switch authentication from session-based to JWT for improved security and scalability. 
 - Replace session-based authentication with JWT 
 - Update login flow and token validation 
 - BREAKING CHANGE: Clients must send a bearer token instead of session cookies
+Workitem: #1234567
 ```
+
+## Core Principles
+
+- NEVER commit or push directly to protected branches.
+- MUST strictly follow the commit message format for consistency and traceability.
 
 ## Workflow
 
-1. If `{target}` is protected, must create a new branch from it by [create-branch](./create-branch.md) and switch to it. NEVER commit or push directly to protected branches.
+1. If `{target}` is protected, **must create a new branch** from it by [create-branch](./create-branch.md) and switch to it.
 2. Stash any uncommitted or untracked changes to keep the working tree clean for the next step.
 3. Fetch the latest `origin/{base}` and rebase the current branch on top of it.
 4. Restore the stash if one was created in step 2.
