@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import asyncio
 import os
+import re
 from typing import Any
 
-from httpx import AsyncClient
+from httpx import AsyncClient, BasicAuth
 
 
 class PlatformProvider:
@@ -21,6 +22,46 @@ class PlatformProvider:
     async def create_pull_request(self) -> dict[str, Any]:
         """Create a pull request using the context information."""
         raise NotImplementedError
+
+
+class GithubProvider(PlatformProvider):
+    """GitHub provider implementation."""
+
+    _patterns = [
+        re.compile(r"^git@github\.com:(?P<owner>[^/]+)/(?P<repo>[^/.]+)(\.git)?$"),
+        re.compile(r"^https://github\.com/(?P<owner>[^/]+)/(?P<repo>[^/.]+)(\.git)?$"),
+    ]
+
+    async def is_supported(self) -> bool:
+        return any(p.match(self._context["remote_url"]) for p in self._patterns)
+
+    async def create_pull_request(self) -> dict[str, Any]:
+        info = self._match_remote_url(self._context["remote_url"])
+
+        payload = {
+            "title": self._context["title"],
+            "body": self._context["description"],
+            "head": self._context["source_branch"],
+            "base": self._context["target_branch"],
+            "draft": self._context.get("is_draft", False),
+        }
+
+        response = await self._httpx_client.post(
+            f"https://api.github.com/repos/{info['owner']}/{info['repo']}/pulls",
+            headers={"Content-Type": "application/json"},
+            auth=BasicAuth(self._context["user"], self._context["password"]),
+            json=payload,
+        )
+        response.raise_for_status()
+
+        return response.json()
+
+    def _match_remote_url(self, remote_url: str) -> dict[str, str]:
+        for pattern in self._patterns:
+            match = pattern.match(remote_url)
+            if match:
+                return match.groupdict()
+        raise ValueError(f"Unsupported GitHub remote URL format: {remote_url}")
 
 
 async def run_cmd(args: list[str], cwd: str | None = None, input_bytes: bytes | None = None) -> str:
@@ -48,7 +89,7 @@ async def get_credentials(remote_url: str, cwd: str | None = None) -> tuple[str,
 
     Raises RuntimeError if credentials cannot be found in either place.
     """
-    user, password = os.getenv("GIT_USER"), os.getenv("GIT_TOKEN")
+    user, password = os.getenv("GIT_USER"), os.getenv("GIT_PASSWD")
     if not user or not password:
         creds_input = f"url={remote_url}\n\n".encode()
         creds_output = await run_cmd(
@@ -72,8 +113,8 @@ async def build_git_context(cwd: str | None = None) -> dict[str, str]:
             run_cmd(["git", "remote", "get-url", "origin"], cwd=cwd),
         ]
     )
-    user, token = await get_credentials(remote_url, cwd=cwd)
-    return {"remote_url": remote_url, "branch": branch, "user": user, "token": token}
+    user, password = await get_credentials(remote_url, cwd=cwd)
+    return {"remote_url": remote_url, "branch": branch, "user": user, "password": password}
 
 
 async def pull_request(llm_context: dict[str, str], cwd: str | None = None) -> dict[str, Any]:
