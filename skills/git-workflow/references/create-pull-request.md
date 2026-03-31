@@ -15,7 +15,7 @@ Open a pull request from a source branch to a target branch, using a repository 
 
 ### PR Title Format
 
-`<type>(<scope>)#{workitem}: <short_description>`
+`<type>(<scope>)#<workitem>: <short_description>`
 
 Fields are derived from the source branch name, user input, or commits in `target..source`:
 
@@ -31,7 +31,7 @@ Fields are derived from the source branch name, user input, or commits in `targe
 <brief summary of the change>
 
 - type: <type>
-- workitem: <workitem>
+- workitem: #<workitem>
 - <what changed>
 
 ## Validation
@@ -40,6 +40,10 @@ Fields are derived from the source branch name, user input, or commits in `targe
 ## Risks
 - <known risks or follow-up items>
 ```
+
+## Core Principles
+
+- MUST strictly follow the PR title and body format for consistency and traceability.
 
 ## Workflow
 

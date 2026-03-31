@@ -57,7 +57,7 @@ Use the matching reference under `references/` based on the user's intent:
 ## Workflow
 
 1. Identify the required action from the user request.
-2. Select the corresponding reference.
+2. Select the corresponding reference from [Action References](#action-references).
 3. Read the reference and gather required inputs.
 4. Execute the action using that reference.
 5. If multiple actions are requested, repeat the process in order.
