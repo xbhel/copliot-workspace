@@ -44,8 +44,8 @@ Derived from the source branch name, user input, or `git log --oneline {target}.
 
 | Platform    | Server          |
 | ----------- | --------------- |
-| Azure DevOps| `mcp.azure.com` |
-| GitHub      | `mcp.github.com`|
+| Azure DevOps| microsoft/azure-devops-mcp |
+| GitHub      | io.github.github/github-mcp-server |
 
 ### CLI
 
