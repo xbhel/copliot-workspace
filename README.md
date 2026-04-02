@@ -15,6 +15,8 @@ The project is organized into the following directories:
 
 ## Setup
 
+### Loading the Workspace
+
 Create a symlink so Copilot can load this repo.
 
 Linux/macOS:
@@ -27,4 +29,17 @@ Windows (PowerShell):
 
 ```powershell
 New-Item -ItemType SymbolicLink -Path "$HOME\.copilot" -Target "path\to\copilot-workspace"
+```
+
+### Python Environment
+
+Set up a Python virtual environment and install dependencies as needed for running scripts or MCP servers.
+
+```bash
+uv init <project-name> --python 3.12
+uv add httpx==0.28.1
+uv sync
+
+# Activate the virtual environment
+source .venv/bin/activate # On Windows: .venv\Scripts\activate
 ```

@@ -7,9 +7,19 @@ metadata:
   tags: [git, branch, commit, push, cherry-pick, pull-request]
 ---
 
+# Git Workflow
+
 ## Goal
 
 Execute the requested Git workflow action by using the matching action reference.
+
+## When to Use This Skill
+
+Use this skill when:
+
+- the user asks to create branches, commit and push work, cherry-pick commits, clean branches, or open pull requests
+- the request spans one or more standard Git workflow actions that should follow shared conventions
+- you need to translate a natural-language Git request into the correct action reference and execution order
 
 ## Context
 
@@ -57,7 +67,7 @@ Use the matching reference under `references/` based on the user's intent:
 ## Workflow
 
 1. Identify the required action from the user request.
-2. Select the corresponding reference from [Action References](#action-references).
+2. Select the corresponding reference from the `Action References` section above.
 3. Read the reference and gather required inputs.
 4. Execute the action using that reference.
 5. If multiple actions are requested, repeat the process in order.

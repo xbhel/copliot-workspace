@@ -8,9 +8,19 @@ metadata:
   aliases: [ut-skill-creator]
 ---
 
+# Unit Testing Skill Creator
+
 ## Goal
 
 Create or adapt structured unit testing skills across languages and testing stacks using a layered template.
+
+## When to Use This Skill
+
+Use this skill when:
+
+- the user wants to create a new reusable unit-testing skill rather than directly writing tests
+- an existing testing skill needs to be adapted to a new language, framework, or project convention
+- you need to generate a complete `SKILL.md` for unit testing from structured inputs and project-specific context
 
 ## Inputs
 
