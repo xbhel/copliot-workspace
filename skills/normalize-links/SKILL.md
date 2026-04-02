@@ -7,9 +7,19 @@ metadata:
   tags: [link, normalization, url, markdown]
 ---
 
+# Normalize Links
+
 ## Goal
 
 Extract links from mixed content (raw URLs, markdown links, or mixed prose) and convert them into a consistent markdown link format:
+
+## When to Use This Skill
+
+Use this skill when:
+
+- the input contains raw URLs, markdown links, or prose with embedded links that need normalization
+- the user wants links rewritten into one consistent markdown format with inferred metadata
+- you need clean, repeatable link formatting for notes, reading lists, or reference documents
 
 `[{from}/{author}/{type}/{title}]({url}): {description}`
 

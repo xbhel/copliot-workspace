@@ -7,9 +7,19 @@ metadata:
   tags: [word analysis, linguistics, language learning]
 ---
 
+# Analyze Words
+
 ## Goal
 
 Given one or more words, analyze each word and present a short, beginner-friendly explanation in a consistent markdown format.
+
+## When to Use This Skill
+
+Use this skill when:
+
+- the user asks for the meaning, pronunciation, part of speech, or morphology of one or more words
+- the user wants simple, learner-friendly explanations rather than dictionary-style depth
+- you need a consistent word-by-word format with phrases and short example sentences
 
 For each word, include:
 

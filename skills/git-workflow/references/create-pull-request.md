@@ -64,12 +64,13 @@ uv run python -m scripts.pull_request \
     --workitems 2798156 \
     --is-draft \
     --is-auto-complete \
-    --cwd "C:/workspace/project/3368-E2ETrackingSystem"
+    --cwd "path/to/repo"
 ```
 
 ## Core Principles
 
 - MUST strictly follow the PR title and body format for consistency and traceability.
+- MUST first use the MCP server listed in [MCP Servers](#mcp-servers) for the detected platform. Only use the CLI if no matching MCP server is available, or if the user explicitly requests the CLI.
 
 ## Workflow
 
@@ -77,7 +78,7 @@ uv run python -m scripts.pull_request \
 2. **Generate Title**: Run `git log --oneline {target}..{source}` and format per [PR Title](#pr-title).
 3. **Select Template**: Look for a PR template in `.github/`; prompt user if multiple exist. Fall back to [PR Body Template](#pr-body-template).
 4. **Build Body**: Populate the template with commit context and user inputs.
-5. **Create PR**: Use the [MCP server](#mcp-servers) for the detected platform; fall back to [CLI](#cli) if unavailable.
+5. **Create PR**: Use the MCP server listed in [MCP Servers](#mcp-servers) for the detected platform; fall back to [CLI](#cli) if unavailable.
 6. **Assign**: Add `{reviewers}` and `{assignees}` after PR creation.
 
 ## Output

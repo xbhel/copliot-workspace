@@ -6,9 +6,19 @@ metadata:
   author: xbhel
 ---
 
+# Develop Features
+
 ## Goal
 
 Provide a structured approach to developing new features. Instead of jumping straight into coding, this process emphasizes clarifying user requirements, understanding the codebase, designing the solution, implementing the code, testing, and validating quality—resulting in well-designed features that integrate seamlessly with the existing codebase, meet user needs, and are maintainable in the long term.
+
+## When to Use This Skill
+
+Use this skill when:
+
+- the user wants an end-to-end feature delivered, not just a quick code snippet or isolated edit
+- the work requires requirement clarification, codebase analysis, design, implementation, testing, and review
+- you need a structured workflow for building non-trivial changes with explicit checkpoints and validation
 
 ## Inputs
 
