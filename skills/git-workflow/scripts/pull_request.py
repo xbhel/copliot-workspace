@@ -651,10 +651,10 @@ def main() -> None:
         python pull_request.py \\
             --title "Add new feature" \\
             --description "This PR adds a new feature." \\
-            --source feat/278052-add-e2e-tracking \\
+            --source feat/278052-add-auth \\
             --target dev \\
-            --reviewers hex2@legal.regn.net \\
-            --workitems 2798156 \\
+            --reviewers tom allen \\
+            --workitems 1234567 \\
             --is-draft \\
             --is-auto-complete
     """
