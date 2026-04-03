@@ -4,8 +4,6 @@ description: Create or adapt unit testing skills across languages and testing st
 metadata: 
   version: 1.0.0
   author: xbhel
-  tags: [unit testing, test automation, meta-skill, template]
-  aliases: [ut-skill-creator]
 ---
 
 # Unit Testing Skill Creator
@@ -14,7 +12,7 @@ metadata:
 
 Create or adapt structured unit testing skills across languages and testing stacks using a layered template.
 
-## When to Use This Skill
+## When to Use
 
 Use this skill when:
 

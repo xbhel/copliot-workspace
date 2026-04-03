@@ -4,7 +4,6 @@ description: Analyze words and provide pronunciation, part of speech, beginner-f
 metadata: 
   version: 1.0.0
   author: xbhel
-  tags: [word analysis, linguistics, language learning]
 ---
 
 # Analyze Words
@@ -13,7 +12,7 @@ metadata:
 
 Given one or more words, analyze each word and present a short, beginner-friendly explanation in a consistent markdown format.
 
-## When to Use This Skill
+## When to Use
 
 Use this skill when:
 

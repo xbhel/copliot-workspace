@@ -12,7 +12,7 @@ metadata:
 
 Provide a structured approach to developing new features. Instead of jumping straight into coding, this process emphasizes clarifying user requirements, understanding the codebase, designing the solution, implementing the code, testing, and validating quality—resulting in well-designed features that integrate seamlessly with the existing codebase, meet user needs, and are maintainable in the long term.
 
-## When to Use This Skill
+## When to Use
 
 Use this skill when:
 
