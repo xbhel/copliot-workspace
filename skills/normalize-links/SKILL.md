@@ -4,7 +4,6 @@ description: Extract links from text and convert them into a consistent markdown
 metadata: 
   version: 1.0.0
   author: xbhel
-  tags: [link, normalization, url, markdown]
 ---
 
 # Normalize Links
@@ -13,7 +12,7 @@ metadata:
 
 Extract links from mixed content (raw URLs, markdown links, or mixed prose) and convert them into a consistent markdown link format:
 
-## When to Use This Skill
+## When to Use
 
 Use this skill when:
 

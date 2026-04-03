@@ -4,7 +4,6 @@ description: Execute common Git workflow actions with shared conventions for bra
 metadata:
   version: 1.0.0
   author: xbhel
-  tags: [git, branch, commit, push, cherry-pick, pull-request]
 ---
 
 # Git Workflow
@@ -13,7 +12,7 @@ metadata:
 
 Execute the requested Git workflow action by using the matching action reference.
 
-## When to Use This Skill
+## When to Use
 
 Use this skill when:
 

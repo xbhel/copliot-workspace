@@ -4,7 +4,6 @@ description: Generate and maintain unit tests for Python projects using unittest
 metadata:
   version: 1.0.0
   author: xbhel
-  tags: [unit testing, python, unittest, uv]
 ---
 
 # Python Unit Testing
@@ -13,7 +12,7 @@ metadata:
 
 Generate, run, and iteratively improve unit tests for a Python project using the `unittest` framework, `unittest.mock` for isolation, `coverage` for reporting, and `ruff` for linting — all managed through `uv`.
 
-## When to Use This Skill
+## When to Use
 
 Use this skill when:
 

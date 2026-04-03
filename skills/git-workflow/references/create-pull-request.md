@@ -49,12 +49,12 @@ Derived from the source branch name, user input, or `git log --oneline {target}.
 
 ### CLI
 
-ALWAYS use `uv run python -m scripts.pull_request --help` to see available options before executing.
+ALWAYS use `uvx run --with httpx==0.28.1 python -m scripts.pull_request --help` to see available options before executing.
 
 Example:
 
 ```bash
-uv run python -m scripts.pull_request \
+uvx run --with httpx==0.28.1 python -m scripts.pull_request \
     --title "Add new feature for testing" \
     --description "This PR adds a new feature." \
     --source feat/278052-add-e2e-tracking \

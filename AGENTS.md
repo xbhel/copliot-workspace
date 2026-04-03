@@ -9,20 +9,21 @@ When authoring a **skill file**, organize the content in the following order:
    - `description`
    - `allowed-tools` (optional)
    - `depends-on` (optional)
+   - `allowed-tools` (optional)
    - `metadata`:
      - `version`
      - `author`
-     - `mcp-server` (optional)
-     - `tags` (optional)
-     - `aliases` (optional): alternative invocation names.
+     - tags (optional)
+     - aliases (optional): alternative invocation names.
 2. `## Goal`: Clear statement of the skill’s purpose and expected outcome.
-3. `## Inputs`: Table of input parameters following the defined Input Schema below.
-4. `## Context` (optional): Background, conventions, or assumptions that inform execution.
-5. `## Core Principles` (optional): Constraints and rules that must be followed.
-6. `## Workflow` (optional): Step-by-step execution process to achieve its goal.
-7. `## Output` (optional): Expected output format and structure.
-8. `## Error Handling` (optional): Rules for handling errors and exceptions.
-9. `## Examples` (optional): Sample inputs and expected outputs demonstrating usage.
+3. `## When to Use`: Guidance on scenarios where this skill is applicable.
+4. `## Inputs`: Table of input parameters following the defined Input Schema below.
+5. `## Context` (optional): Background, conventions, or assumptions that inform execution.
+6. `## Core Principles` (optional): Constraints and rules that must be followed.
+7. `## Workflow` (optional): Step-by-step execution process to achieve its goal.
+8. `## Output` (optional): Expected output format and structure.
+9. `## Error Handling` (optional): Rules for handling errors and exceptions.
+10. `## Examples` (optional): Sample inputs and expected outputs demonstrating usage.
 
 **Agents files** should follow a similar structure but may omit sections that are not relevant to their orchestration role.
 
