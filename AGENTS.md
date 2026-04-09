@@ -77,6 +77,6 @@ If input parameters are required:
   - GPT for reasoning
   - Gemini for creativity
   - Claude for orchestration and coding
-- Reference input parameters with {} in skills/agents.
-- Don’t ask for info that can be inferred or fetched via tools.
-- Don’t assume completeness—check for missing inputs and request them explicitly.
+- ALWAYS reference input parameters with `{name}` in skills/agents.
+- NEVER ask for info that can be inferred or fetched via tools.
+- NEVER assume completeness—check for missing inputs and request them explicitly.
