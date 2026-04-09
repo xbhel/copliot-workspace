@@ -4,12 +4,12 @@ Open a pull request from a source branch to a target branch, using a repository 
 
 ## Inputs
 
-|name|description|default|required|source|
-|---|---|---|---|---|
-|source|Source branch for the pull request|current branch|No|user or derived|
-|target|Target branch for the pull request|`dev`|No|user or default|
-|reviewers|Reviewers to request|current user|No|user or derived|
-|assignees|Assignees to add|current user|No|user or derived|
+| name      | description                        | default        | required | source          |
+| --------- | ---------------------------------- | -------------- | -------- | --------------- |
+| source    | Source branch for the pull request | current branch | No       | user or derived |
+| target    | Target branch for the pull request | `dev`          | No       | user or default |
+| reviewers | Reviewers to request               | current user   | No       | user or derived |
+| assignees | Assignees to add                   | current user   | No       | user or derived |
 
 ## Context
 
@@ -34,7 +34,7 @@ Derived from the source branch name, user input, or `git log --oneline {target}.
 - <what changed>
 
 ## Validation
-- <tests or checks run>
+- ✔️/❌ <tests or checks run>
 
 ## Risks
 - <known risks or follow-up items>
@@ -42,30 +42,33 @@ Derived from the source branch name, user input, or `git log --oneline {target}.
 
 ### MCP Servers
 
-| Platform    | Server          |
-| ----------- | --------------- |
-| Azure DevOps| microsoft/azure-devops-mcp |
-| GitHub      | io.github.github/github-mcp-server |
+| Platform     | Server                             | Server Aliases |
+| ------------ | ---------------------------------- | -------------- |
+| Azure DevOps | microsoft/azure-devops-mcp         | azure-devops   |
+| GitHub       | io.github.github/github-mcp-server | github         |
 
 ### CLI
 
-ALWAYS use `uvx run --with httpx==0.28.1 python -m scripts.pull_request --help` to see available options before executing.
+ALWAYS run `uv run python "<skill_dir>/scripts/pull_request.py" --help` first to see available options.
 
-Example:
+Example usage:
 
 ```bash
-uvx run --with httpx==0.28.1 python -m scripts.pull_request \
+uv run --with httpx==0.28.1 python "<skill_dir>/scripts/pull_request.py" \
     --title "Add new feature for testing" \
     --description "This PR adds a new feature." \
     --source feat/278052-add-e2e-tracking \
     --target dev \
-    --reviewers hex2 allen\
+    --reviewers xbhel allen \
     --assignees allen \
     --workitems 2798156 \
     --is-draft \
     --is-auto-complete \
-    --cwd "path/to/repo"
+    --cwd "<repo_root>"
 ```
+
+- `skill_dir`: absolute path to the `git-workflow` skill root
+- `repo_root`: from `git rev-parse --show-toplevel`
 
 ## Core Principles
 

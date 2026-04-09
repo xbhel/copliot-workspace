@@ -1,0 +1,27 @@
+{
+    "editor.formatOnSave": true,
+    "python.terminal.useEnvFile": true,
+    "python.envFile": "${workspaceFolder}/.env",
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/scripts"
+    ],
+    "mypy-type-checker.path": [
+        "${workspaceFolder}/.venv/Scripts/dmypy.exe"
+    ],
+    "chat.tools.terminal.autoApprove": {
+        "/^git (add|stash|remote|branch|status|merge|log|fetch|push|commit|checkout|rev-parse|reflog|worktree|rebase) .*$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^ux[x] (ruff|run) .*$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^pnpm (dev|filter|build).*$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "bash": true,
+        "powershell": true
+    }
+}

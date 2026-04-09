@@ -62,7 +62,7 @@ Once the requirements are clarified, summarize them concisely and **confirm the 
 
 ### Phase 2: Analyze the Codebase
 
-Invoke the `/code-analysis` to analyze code relevant to the requirements, including existing patterns and workflows. Use the findings to identify:
+Invoke the `/code-analysis` to analyze code relevant to the requirements. Use the findings to identify:
 
 - relevant modules, files, and interfaces
 - required conventions and patterns
@@ -70,21 +70,11 @@ Invoke the `/code-analysis` to analyze code relevant to the requirements, includ
 - gaps in existing tests or behavior
 - similar features or components to guide consistency and reuse
 
-Example:
-
-```text
-You: To implement the calculator, I analyzed the codebase and found:
-
-- **Modules:** `src/cli.py` (entry), `src/operations/` (logic target), `src/utils/parser.py` (shared)
-- **Patterns:** command dispatch
-- **Conventions:** pure functions, type hints, docstrings; errors raise `ValueError`
-- **Reference:** adapt the pattern used in `src/operations/converter.py`
-- **Testing:** `pytest` in `tests/`, covering valid and invalid paths; run with `uv run pytest`
-```
-
 ### Phase 3: Validate and Refine Requirements
 
 Cross-reference the requirements against the codebase analysis. Use code evidence first, and ask follow-up questions only when the evidence is insufficient.
+
+Follow these steps:
 
 1. Validate alignment with the existing architecture, data flow, and ownership boundaries.
 2. Identify gaps, conflicts, and missing behaviors.
