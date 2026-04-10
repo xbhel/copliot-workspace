@@ -81,7 +81,7 @@ uv run --with httpx==0.28.1 python "<skill_dir>/scripts/pull_request.py" \
 2. **Generate Title**: Run `git log --oneline {target}..{source}` and format per [PR Title](#pr-title).
 3. **Select Template**: Look for a PR template in `.github/`; prompt user if multiple exist. Fall back to [PR Body Template](#pr-body-template).
 4. **Build Body**: Populate the template with commit context and user inputs.
-5. **Create PR**: Use the MCP server listed in [MCP Servers](#mcp-servers) for the detected platform; fall back to [CLI](#cli) if unavailable.
+5. **Create PR**: Use the MCP server for the detected platform (see [MCP Servers](#mcp-servers)); if unavailable, fall back to the CLI (see [CLI](#cli)).
 6. **Assign**: Add `{reviewers}` and `{assignees}` after PR creation.
 
 ## Output
