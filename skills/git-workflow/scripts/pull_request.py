@@ -662,7 +662,7 @@ def main() -> None:
 
     parser = argparse.ArgumentParser(description="Create a pull request from the command line.")
     parser.add_argument("--title", required=True, help="PR title")
-    parser.add_argument("--description", default="", help="PR description")
+    parser.add_argument("--description", default="", help="PR description/body")
     parser.add_argument("--source", required=True, help="Source branch")
     parser.add_argument("--target", required=True, help="Target branch")
     parser.add_argument("--reviewers", help="List of reviewers", nargs="*", default=[])

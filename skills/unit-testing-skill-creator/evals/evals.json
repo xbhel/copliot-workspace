@@ -1,0 +1,38 @@
+{
+    "skill_name": "unit-testing-skill-creator",
+    "evals": [
+        {
+            "id": 0,
+            "prompt": "Create a reusable Python unit-testing skill for one of our Lambda-style repos. We use uv, unittest, coverage, and Ruff, but I only know a few conventions: production code is under src/lambda, tests live in tests/unit, there is sometimes a custom test_runner.py, and we want an 85% coverage gate. Keep the skill readable and tell me what assumptions you had to make.",
+            "expected_output": "A complete operational SKILL.md for a Python unittest stack with concrete commands, resolved defaults, and no template placeholders.",
+            "files": [],
+            "expectations": [
+                "Generated skill file includes the standard sections Goal, When to Use, Inputs, Context, Core Principles, Workflow, Output, and Error Handling.",
+                "Generated skill includes concrete commands for uv, unittest discovery, Ruff, and coverage, and it references both src/lambda and tests/unit.",
+                "Resolved-input summary does not invent a derived skill name when the user did not ask for one."
+            ]
+        },
+        {
+            "id": 1,
+            "prompt": "I already have a testing skill called java-junit5-skill. Refine it for a Maven repo that uses JUnit 5, AssertJ, Mockito, JaCoCo, and SonarLint. Preserve the existing name, make the commands concrete, and make the workflow explicit about focused test runs, coverage, and blocker reporting.",
+            "expected_output": "A refined skill that preserves the requested name and contains concrete Java testing guidance instead of a thin generic template.",
+            "files": [],
+            "expectations": [
+                "Generated skill frontmatter name is exactly java-junit5-skill.",
+                "Generated skill includes concrete Maven commands for the full suite, a focused class, a focused method, and coverage runs.",
+                "Generated skill workflow explicitly includes blocker reporting when Maven, JaCoCo, or SonarLint validation is blocked."
+            ]
+        },
+        {
+            "id": 2,
+            "prompt": "Create a reusable React unit-testing skill for our frontend repos. We use pnpm, Vitest, Testing Library, MSW, and ESLint. The skill should explain how to test async UI state, how to mock network calls, and where to draw the line between unit tests and integration tests for components.",
+            "expected_output": "A React-focused testing skill with domain-specific guidance for async UI, network mocking, and test-boundary decisions.",
+            "files": [],
+            "expectations": [
+                "Generated skill includes React-specific tooling guidance for pnpm, Vitest, React Testing Library, MSW, and ESLint.",
+                "Generated skill explicitly explains the boundary between unit tests, component-integration tests, and E2E tests.",
+                "Generated skill gives concrete async UI testing guidance such as awaited user events, findBy queries, waitFor, or waitForElementToBeRemoved."
+            ]
+        }
+    ]
+}

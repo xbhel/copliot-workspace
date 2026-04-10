@@ -73,6 +73,7 @@ uv run --with httpx==0.28.1 python "<skill_dir>/scripts/pull_request.py" \
 ## Core Principles
 
 - MUST strictly follow the PR title and body format for consistency and traceability.
+- MUST use repository templates when available to ensure PRs include required information and follow standards.
 - MUST first use the MCP server listed in [MCP Servers](#mcp-servers) for the detected platform. Only use the [Custom CLI](#custom-cli) if no matching MCP server is available, or if the user explicitly requests the CLI.
 
 ## Workflow
@@ -80,7 +81,7 @@ uv run --with httpx==0.28.1 python "<skill_dir>/scripts/pull_request.py" \
 1. **Resolve Inputs**: Determine `{source}`, `{target}`, `{reviewers}`, and `{assignees}` from the request and context.
 2. **Generate Title**: Run `git log --oneline {target}..{source}` and format per [PR Title](#pr-title).
 3. **Select Template**: Look for a PR template in `.github/`; prompt user if multiple exist. Fall back to [PR Body Template](#pr-body-template).
-4. **Build Body**: Populate the template with commit context and user inputs.
+4. **Render Body**: Populate the template with commit context and user inputs.
 5. **Create PR**: Use the MCP server listed in [MCP Servers](#mcp-servers) for the detected platform; fall back to the [Custom CLI](#custom-cli) if unavailable.
 6. **Assign**: Add `{reviewers}` and `{assignees}` after PR creation.
 

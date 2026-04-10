@@ -1,0 +1,18 @@
+# Source to fetch skills from
+default_source = "github"
+
+# Tools to install skills to (e.g. "claude", "cursor", "codex")
+tools = ["claude", "copilot", "codex"]
+
+# Which tool's instruction file is the source of truth
+# canonical_instructions = "CLAUDE.md"
+
+dependencies = [
+    { handle = "anthropics/skills/skill-creator", type = "skill" },
+    { handle = "anthropics/skills/frontend-design", type = "skill" },
+]
+
+[[source]]
+name = "github"
+type = "git"
+url = "https://github.com/{owner}/{repo}.git"

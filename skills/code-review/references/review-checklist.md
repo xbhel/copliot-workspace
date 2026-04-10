@@ -9,15 +9,15 @@ Read this file when needed for:
 
 Before producing the final review, check these dimensions:
 
-- Check requirement coverage against known requirements, acceptance criteria, and design constraints.
-- Check correctness for logic bugs, missing guards, boundary issues, and regression risks.
-- Check data and state handling for consistency issues, duplicate writes, concurrency risks, and idempotency gaps.
-- Check error handling for exceptions, timeouts, nulls, rollback behavior, and user-visible failures.
-- Check interface compatibility for callers, return values, events, schemas, and config.
-- Check test coverage for the happy path, edge cases, and failure modes.
-- Check whether lint, build, and tests passed or whether evidence is missing.
-- Check design alignment against the existing architecture and complexity expectations.
-- Check maintainability for naming, readability, duplication, coupling, and comments.
+- [ ] Requirement coverage against known requirements, acceptance criteria, and design constraints.
+- [ ] Correctness for logic bugs, missing guards, boundary issues, and regression risks.
+- [ ] Data and state handling for consistency issues, duplicate writes, concurrency risks, and idempotency gaps.
+- [ ] Error handling for exceptions, timeouts, nulls, rollback behavior, and user-visible failures.
+- [ ] Interface compatibility for callers, return values, events, schemas, and config.
+- [ ] Test coverage for the happy path, edge cases, and failure modes.
+- [ ] Whether lint, build, and tests passed or whether evidence is missing.
+- [ ] Design alignment against the existing architecture and complexity expectations.
+- [ ] Maintainability for naming, readability, duplication, coupling, and comments.
 
 ## High-Risk Review Prompts
 

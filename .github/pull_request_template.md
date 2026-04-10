@@ -13,8 +13,6 @@
 * [ ] Documentation only
 * [ ] Breaking change
 
----
-
 ## Scope
 
 <!-- Which parts of the repo are affected? -->
@@ -24,23 +22,15 @@
 * Templates / References:
 * Other:
 
----
-
 ## Changes
 
 <!-- Describe the changes in a structured way -->
 
 ### 1. What changed
 
-*
-
 ### 2. Why it changed
 
-*
-
 ### 3. How it works now
-
-*
 
 ## Checklist
 
@@ -51,8 +41,5 @@
 * [ ] Assumptions and risks are explicit
 * [ ] No unnecessary verbosity
 
----
-
 ## Additional Notes
-
-*
+<!-- Any additional context, screenshots, or references -->
