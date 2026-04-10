@@ -1,6 +1,6 @@
 ---
 name: git-workflow
-description: Execute common Git workflow actions with shared conventions for branch creation, commit/push, cherry-pick/push, branch cleanup, and pull request creation.
+description: Execute common Git workflow actions with shared conventions for branch creation, commit/push, cherry-pick/push, branch cleanup, and pull request creation. Use this skill when handling standard Git actions such as branching, commit/push, cherry-pick, cleanup, or pull requests.
 metadata:
   version: 1.0.0
   author: xbhel
@@ -16,9 +16,9 @@ Execute the requested Git workflow action by using the matching action reference
 
 Use this skill when:
 
-- the user asks to create branches, commit and push work, cherry-pick commits, clean branches, or open pull requests
-- the request spans one or more standard Git workflow actions that should follow shared conventions
-- you need to translate a natural-language Git request into the correct action reference and execution order
+- the request involves standard Git actions such as branching, commit/push, cherry-pick, cleanup, or pull requests
+- one or more workflow steps should follow the repo's shared Git conventions
+- a natural-language Git request needs to be mapped to the right action reference and order
 
 ## Context
 

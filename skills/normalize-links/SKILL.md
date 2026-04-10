@@ -1,6 +1,6 @@
 ---
 name: normalize-links
-description: Extract links from text and convert them into a consistent markdown link format.
+description: Extract links from text and convert them into a consistent markdown link format. Use this skill when links in mixed text need to be extracted and normalized into one markdown format.
 metadata: 
   version: 1.0.0
   author: xbhel
@@ -16,9 +16,9 @@ Extract links from mixed content (raw URLs, markdown links, or mixed prose) and 
 
 Use this skill when:
 
-- the input contains raw URLs, markdown links, or prose with embedded links that need normalization
-- the user wants links rewritten into one consistent markdown format with inferred metadata
-- you need clean, repeatable link formatting for notes, reading lists, or reference documents
+- the input mixes raw URLs, markdown links, or prose with embedded links
+- links should be rewritten into one consistent markdown format
+- inferred metadata is needed for clean, repeatable reference lists or notes
 
 `[{from}/{author}/{type}/{title}]({url}): {description}`
 

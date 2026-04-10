@@ -1,6 +1,6 @@
 ---
 name: py-unittests
-description: Generate and maintain unit tests for Python projects using unittest, unittest.mock, coverage, and ruff, managed by uv.
+description: Generate and maintain unit tests for Python projects using unittest, unittest.mock, coverage, and ruff, managed by uv. Use this skill when adding, fixing, or improving Python unit tests with unittest-based tooling.
 metadata:
   version: 1.0.0
   author: xbhel
@@ -16,9 +16,9 @@ Generate, run, and iteratively improve unit tests for a Python project using the
 
 Use this skill when:
 
-- the user wants to add, update, or improve Python unit tests in a `unittest`-based project
-- the work includes running tests, fixing failures, improving coverage, or cleaning up test quality
-- the project uses or should use `uv`, `coverage`, and `ruff` as part of the Python testing workflow
+- the task is to add, update, or improve Python unit tests in a `unittest`-based project
+- test failures, coverage gaps, or test quality issues need iterative cleanup
+- the workflow uses or should use `uv`, `coverage`, and `ruff`
 
 ## Inputs
 
