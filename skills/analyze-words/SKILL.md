@@ -12,14 +12,6 @@ metadata:
 
 Given one or more words, analyze each word and present a short, beginner-friendly explanation in a consistent markdown format.
 
-## When to Use
-
-Use this skill when:
-
-- the task is to explain one or more words for a learner
-- pronunciation, part of speech, or morphology should be included with simple meanings
-- the output should follow a consistent word-by-word format with phrases and examples
-
 For each word, include:
 
 - `word`: The original word.
@@ -32,6 +24,14 @@ For each word, include:
   - `suffixes`: Optional.
 - `common_phrases`: Up to 3 common phrases or collocations.
 - `example_sentences`: Up to 3 short English example sentences, max 30 characters each.
+
+## When to Use
+
+Use this skill when:
+
+- the task is to explain one or more words for a learner
+- pronunciation, part of speech, or morphology should be included with simple meanings
+- the output should follow a consistent word-by-word format with phrases and examples
 
 ## Inputs
 

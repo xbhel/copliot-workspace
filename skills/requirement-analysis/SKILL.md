@@ -10,7 +10,7 @@ metadata:
 
 ## Goal
 
-Turn raw, incomplete, or ambiguous requirements into a refined, codebase-informed specification that is ready for design and implementation.
+Turn raw, incomplete, or ambiguous requirements into a refined, codebase-informed specification that is clear, evidence-based, and ready for design and implementation.
 
 ## When to Use
 
@@ -18,7 +18,7 @@ Use this skill when:
 
 - a feature, bug, or change request is incomplete or ambiguous
 - requirements must be clarified or validated before design or implementation
-- you need a codebase-informed specification that is ready to hand off for design or build
+- you need a codebase-informed specification that is ready to hand off for design or implementation
 
 ## Inputs
 
@@ -31,6 +31,7 @@ Use this skill when:
 - MUST ask clarifying questions until the requirements are unambiguous.
 - ALWAYS batch clarifying questions into a single prompt; never ask one at a time.
 - MUST use codebase evidence to resolve ambiguities before escalating to the user.
+- MUST produce a requirements specification, not an architecture proposal.
 - MUST surface assumptions and risks explicitly; do not absorb them silently.
 
 ## Workflow
@@ -61,17 +62,13 @@ Once the requirements are clarified, summarize them concisely and **confirm the 
 
 ### Phase 2: Analyze the Codebase
 
-Invoke the `/code-analysis` to analyze code relevant to the requirements. Use the findings to identify:
+Explore only the codebase areas touched by the clarified requirements to gather relevant evidence. Keep the analysis targeted; do not perform a broad or exhaustive review.
 
-- relevant modules, files, and interfaces
-- required conventions and patterns
-- affected integration points
-- gaps in existing tests or behavior
-- similar features or components to guide consistency and reuse
+See [code-analysis.md](./references/code-analysis.md) for detailed analysis guidance.
 
 ### Phase 3: Validate and Refine Requirements
 
-Cross-reference the requirements against the codebase analysis. Use code evidence first, and ask follow-up questions only when the evidence is insufficient.
+Cross-reference the clarified requirements against the codebase analysis. Use code evidence first, and ask follow-up questions only when the evidence is insufficient.
 
 Follow these steps:
 
@@ -94,24 +91,20 @@ User:
 2. Handle division by zero and show a clear user-facing error message.
 ```
 
-After this phase, the requirements should be fully clarified and grounded in codebase context, ready for design and implementation.
+After this phase, the requirements should be fully clarified, evidence-backed, and grounded in the relevant codebase context, ready for design and implementation.
 
-### Phase 4: Output
+### Phase 4: Produce Specification
 
-Produce the final refined requirements as an implementation-ready specification. Consolidate all clarified requirements, validation results, and codebase insights from the previous phases into a single structured output.
-
-Include, when relevant:
+Produce the final refined requirements as a requirements specification, not an architecture proposal. Consolidate the clarified requirements, validation results, and codebase findings from the previous phases into one structured output, including:
 
 1. Problem, scope, and confirmed goals.
-2. Confirmed behavior and success criteria
-3. Inputs, outputs, and interface or contract details
-4. Constraints and non-functional requirements
-5. Edge cases and failure modes
-6. Relevant codebase context, including modules, files, interfaces, patterns, and workflows
-7. Affected integration points
-8. Assumptions, risks, and trade-offs
-
-Ensure the output is well organized, internally consistent, and detailed enough to be used directly for design and implementation.
+2. Confirmed behavior and acceptance criteria.
+3. Inputs, outputs, rules, validation, and interface expectations.
+4. Constraints and non-functional requirements.
+5. Edge cases and failure modes.
+6. Relevant codebase findings that shape the requirements, including modules, files, interfaces, patterns, dependencies, tests, and workflows.
+7. Affected surfaces, dependencies, and compatibility considerations.
+8. Assumptions, risks, trade-offs, and any remaining open questions.
 
 Example output:
 
@@ -154,11 +147,12 @@ Affected integration points:
 Assumptions, risks, and trade-offs:
 - Supporting compact expressions like `2+2` may require parser changes and could affect existing parsing behavior.
 - Favor clear user-facing error messages over exposing raw exceptions.
+- Open questions: none.
 ```
 
 ## Output
 
-A structured, implementation-ready specification covering all clarified requirements, codebase context, and validation results.
+A structured requirements specification covering the clarified requirements, relevant codebase evidence, validation results, and any remaining decisions needed before design.
 
 ## Error Handling
 
