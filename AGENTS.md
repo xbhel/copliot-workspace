@@ -7,16 +7,13 @@ When authoring a **skill file**, organize the content in the following order:
 1. Metadata: Defined at the top of the file.
    - `name`
    - `description`
-   - `allowed-tools` (optional)
-   - `depends-on` (optional)
+   - `allowed-tools` (optional): Space-delimited list of pre-approved tools the skill may use.
    - `metadata`:
      - `version`
      - `author`
-     - `tags` (optional)
-     - `aliases` (optional): alternative invocation names.
 2. `## Goal`: Clear statement of the skill’s purpose and expected outcome.
 3. `## When to Use`: Guidance on scenarios where this skill is applicable.
-4. `## Inputs`: Table of input parameters following the defined Input Schema below.
+4. `## Inputs` (optional): Table of input parameters following the defined Input Schema below.
 5. `## Context` (optional): Background, conventions, or assumptions that inform execution.
 6. `## Core Principles` (optional): Constraints and rules that must be followed.
 7. `## Workflow` (optional): Step-by-step execution process to achieve its goal.
@@ -79,3 +76,4 @@ If input parameters are required:
 - ALWAYS reference input parameters with `{name}` in skills/agents.
 - NEVER ask for info that can be inferred or fetched via tools.
 - NEVER assume completeness—check for missing inputs and request them explicitly.
+- In skill/agent writing, always use **MUST** for required behavior and **NEVER** for anti-pattern or prohibited behavior.
