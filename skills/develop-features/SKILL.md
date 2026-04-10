@@ -1,6 +1,6 @@
 ---
 name: develop-features
-description: Drive end-to-end feature development from user requirements through design, implementation, testing, quality review, documentation,and final delivery.
+description: Drive end-to-end feature development from user requirements through design, implementation, testing, quality review, documentation,and final delivery. Use this skill when delivering a non-trivial feature end to end, from requirements through testing and handoff.
 metadata:
   version: 1.0.0
   author: xbhel
@@ -16,9 +16,9 @@ Provide a structured approach to developing new features. Instead of jumping str
 
 Use this skill when:
 
-- the user wants an end-to-end feature delivered, not just a quick code snippet or isolated edit
-- the work requires requirement clarification, codebase analysis, design, implementation, testing, and review
-- you need a structured workflow for building non-trivial changes with explicit checkpoints and validation
+- the goal is to deliver a non-trivial feature end to end, not just an isolated edit
+- requirements, codebase analysis, design, implementation, and testing must stay in one workflow
+- the work needs explicit checkpoints and validation before handoff
 
 ## Inputs
 

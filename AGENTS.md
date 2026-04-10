@@ -9,12 +9,11 @@ When authoring a **skill file**, organize the content in the following order:
    - `description`
    - `allowed-tools` (optional)
    - `depends-on` (optional)
-   - `allowed-tools` (optional)
    - `metadata`:
      - `version`
      - `author`
-     - tags (optional)
-     - aliases (optional): alternative invocation names.
+     - `tags` (optional)
+     - `aliases` (optional): alternative invocation names.
 2. `## Goal`: Clear statement of the skill’s purpose and expected outcome.
 3. `## When to Use`: Guidance on scenarios where this skill is applicable.
 4. `## Inputs`: Table of input parameters following the defined Input Schema below.

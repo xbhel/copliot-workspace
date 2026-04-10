@@ -1,6 +1,6 @@
 ---
 name: analyze-words
-description: Analyze words and provide pronunciation, part of speech, beginner-friendly meanings, morphology, common phrases, and example sentences.
+description: Analyze words and provide pronunciation, part of speech, beginner-friendly meanings, morphology, common phrases, and example sentences. Use this skill when users want beginner-friendly word meanings, pronunciation, morphology, phrases, or examples.
 metadata: 
   version: 1.0.0
   author: xbhel
@@ -16,9 +16,9 @@ Given one or more words, analyze each word and present a short, beginner-friendl
 
 Use this skill when:
 
-- the user asks for the meaning, pronunciation, part of speech, or morphology of one or more words
-- the user wants simple, learner-friendly explanations rather than dictionary-style depth
-- you need a consistent word-by-word format with phrases and short example sentences
+- the task is to explain one or more words for a learner
+- pronunciation, part of speech, or morphology should be included with simple meanings
+- the output should follow a consistent word-by-word format with phrases and examples
 
 For each word, include:
 

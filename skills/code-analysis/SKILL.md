@@ -14,12 +14,10 @@ Produce a structured, evidence-based analysis of a target codebase area, includi
 
 Use this skill when:
 
-- build working context for implementation or review
-- trace behavior across files, modules, and execution paths
-- understand architecture, responsibilities, interfaces, and dependencies
-- identify conventions, assumptions, constraints, and reuse opportunities
-- inspect build, run, and test context relevant to the target area
-- support debugging, refactoring, estimation, or design validation
+- you need working context before implementation, debugging, refactoring, or review
+- behavior must be traced across files, modules, or execution paths
+- interfaces, dependencies, conventions, or extension points must be mapped
+- tests, run context, or likely risks need to be identified for the target area
 
 ## Core Principles
 

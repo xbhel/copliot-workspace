@@ -1,6 +1,6 @@
 ---
 name: requirement-analysis
-description: Analyze the user’s requirements, clarify ambiguities, validate them against the codebase, and produce a refined specification ready for design and implementation.
+description: Analyze the user’s requirements, clarify ambiguities, validate them against the codebase, and produce a refined specification ready for design and implementation. Use this skill before design or implementation when requirements are incomplete, ambiguous, or need codebase validation.
 metadata:
   version: 1.0.0
   author: xbhel
@@ -17,9 +17,8 @@ Turn raw, incomplete, or ambiguous requirements into a refined, codebase-informe
 Use this skill when:
 
 - a feature, bug, or change request is incomplete or ambiguous
-- requirements need clarification or validation before design or implementation
-- alignment with the existing codebase (architecture, patterns, constraints) is required
-- you need to produce a specification ready for design and implementation
+- requirements must be clarified or validated before design or implementation
+- you need a codebase-informed specification that is ready to hand off for design or build
 
 ## Inputs
 
