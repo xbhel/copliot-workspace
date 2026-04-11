@@ -39,6 +39,14 @@ class PlatformProvider:
         self._context = context
         self._httpx_client = httpx_client
 
+    @classmethod
+    def ssh_to_https(cls, url: str) -> str | None:  # noqa: ARG003
+        """Convert a provider-specific SSH URL to HTTPS for credential lookup.
+
+        Returns the HTTPS URL if recognized, otherwise ``None``.
+        """
+        return None
+
     async def is_supported(self) -> bool:
         """Determine if this provider can handle the given context."""
         raise NotImplementedError
@@ -55,6 +63,13 @@ class GithubProvider(PlatformProvider):
         re.compile(r"^git@github\.com:(?P<owner>[^/]+)/(?P<repo>[^/.]+)(\.git)?$"),
         re.compile(r"^https://github\.com/(?P<owner>[^/]+)/(?P<repo>[^/.]+)(\.git)?$"),
     ]
+
+    @classmethod
+    def ssh_to_https(cls, url: str) -> str | None:
+        info = regex_groupdict(cls._PATTERNS, url)
+        if info and not url.startswith("https://"):
+            return f"https://github.com/{info['owner']}/{info['repo']}"
+        return None
 
     @cached_property
     def _repo_info(self) -> dict[str, str]:
@@ -196,6 +211,13 @@ class AzureDevOpsProvider(PlatformProvider):
             r"v3/(?P<owner>[^/]+)/(?P<project>[^/]+)/(?P<repo>[^/.]+)$"
         ),
     ]
+
+    @classmethod
+    def ssh_to_https(cls, url: str) -> str | None:
+        info = regex_groupdict(cls._PATTERNS, url)
+        if info and not url.startswith("https://"):
+            return f"https://dev.azure.com/{info['owner']}/{info['project']}/_git/{info['repo']}"
+        return None
 
     @cached_property
     def _repo_info(self) -> dict[str, str]:
@@ -377,6 +399,13 @@ class GitLabProvider(PlatformProvider):
         re.compile(r"^https://gitlab\.com/(?P<owner>[^/]+)/(?P<repo>[^/.]+)(\.git)?$"),
     ]
 
+    @classmethod
+    def ssh_to_https(cls, url: str) -> str | None:
+        info = regex_groupdict(cls._PATTERNS, url)
+        if info and not url.startswith("https://"):
+            return f"https://gitlab.com/{info['owner']}/{info['repo']}"
+        return None
+
     @cached_property
     def _repo_info(self) -> dict[str, str]:
         return regex_groupdict(self._PATTERNS, self._context["remote_url"])
@@ -520,6 +549,13 @@ def regex_groupdict(patterns: list[re.Pattern[str]], text: str) -> dict[str, str
     return {}
 
 
+_PROVIDER_CLASSES: list[type[PlatformProvider]] = [
+    GithubProvider,
+    AzureDevOpsProvider,
+    GitLabProvider,
+]
+
+
 async def run_cmd(args: list[str], cwd: str | None = None, input_bytes: bytes | None = None) -> str:
     """Run a command in a subprocess and return its output as a string.
 
@@ -546,6 +582,15 @@ async def run_cmd(args: list[str], cwd: str | None = None, input_bytes: bytes | 
     return stdout_str
 
 
+def _ssh_url_to_https(url: str) -> str:
+    """Convert an SSH remote URL to HTTPS for ``git credential fill``."""
+    for provider_cls in _PROVIDER_CLASSES:
+        https_url = provider_cls.ssh_to_https(url)
+        if https_url is not None:
+            return https_url
+    return url
+
+
 async def get_credentials(remote_url: str, cwd: str | None = None) -> tuple[str, str]:
     """Get the username and token for the given remote URL using git credential helper.
 
@@ -553,7 +598,8 @@ async def get_credentials(remote_url: str, cwd: str | None = None) -> tuple[str,
     """
     user, password = os.getenv("GIT_USER"), os.getenv("GIT_PASSWD")
     if not user or not password:
-        creds_input = f"url={remote_url}\n\n".encode()
+        cred_url = _ssh_url_to_https(remote_url)
+        creds_input = f"url={cred_url}\n\n".encode()
         creds_output = await run_cmd(
             ["git", "credential", "fill"], cwd=cwd, input_bytes=creds_input
         )
@@ -615,14 +661,8 @@ async def pull_request(llm_context: dict[str, Any], cwd: str | None = None) -> P
     git_context = await build_git_context(cwd=cwd)
     context = {**git_context, **llm_context}
 
-    provider_classes: list[type[PlatformProvider]] = [
-        GithubProvider,
-        AzureDevOpsProvider,
-        GitLabProvider,
-    ]
-
     async with httpx.AsyncClient() as httpx_client:
-        for provider_class in provider_classes:
+        for provider_class in _PROVIDER_CLASSES:
             provider = provider_class(context, httpx_client)
 
             if await provider.is_supported():
