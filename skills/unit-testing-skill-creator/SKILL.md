@@ -4,6 +4,8 @@ description: Create or refine reusable unit-testing skills for a specific langua
 metadata:
   version: 1.1.0
   author: xbhel
+  depends-on:
+    - code-analysis
 ---
 
 # Unit Testing Skill Creator
@@ -74,7 +76,7 @@ Determine whether you are creating a new skill, refining an existing skill, or p
 
 ### Step 2. Resolve inputs from evidence first
 
-Pull what you can from the request, nearby files, existing skills, and repository conventions. Infer sensible defaults for omitted optional inputs. Only ask follow-up questions for decisions that materially change the generated skill.
+Pull what you can from the request, nearby files, existing skills, and repository conventions. Use `/code-analysis` to inspect the workspace for testing patterns and the target stack. Infer sensible defaults for omitted optional inputs. Only ask follow-up questions for decisions that materially change the generated skill.
 
 ### Step 3. Present resolved and missing values
 
