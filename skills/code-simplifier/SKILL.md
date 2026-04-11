@@ -1,6 +1,9 @@
 ---
 name: code-simplifier
 description: Simplify and refine existing code for clarity, consistency, and maintainability without changing behavior. Use whenever the user asks to simplify, clean up, refactor for readability, reduce nesting or duplication, remove dead code, polish a recent change, or make code easier to review or maintain, especially in the code they just edited, even if they do not explicitly ask for refactoring.
+metadata:
+  version: 1.0.0
+  author: xbhel
 ---
 
 ## Goal

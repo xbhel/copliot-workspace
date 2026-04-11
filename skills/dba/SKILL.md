@@ -3,8 +3,8 @@ name: dba
 description: Analyze database design, queries, schema changes, and data access risks for an application. Use this skill when work involves schema design, query review, migrations, or database performance concerns.
 allowed-tools: read_file grep_search file_search semantic_search list_dir run_in_terminal get_errors get_changed_files runSubagent
 metadata:
-	version: 1.1.0
-	author: xbhel
+  version: 1.1.0
+  author: xbhel
 ---
 
 # DBA
