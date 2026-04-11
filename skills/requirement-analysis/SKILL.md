@@ -4,6 +4,8 @@ description: Analyze the user’s requirements, clarify ambiguities, validate th
 metadata:
   version: 1.0.0
   author: xbhel
+  depends-on: 
+    - code-analysis
 ---
 
 # Requirement Analysis
@@ -62,9 +64,7 @@ Once the requirements are clarified, summarize them concisely and **confirm the 
 
 ### Phase 2: Analyze the Codebase
 
-Explore only the codebase areas touched by the clarified requirements to gather relevant evidence. Keep the analysis targeted; do not perform a broad or exhaustive review.
-
-See [code-analysis.md](./references/code-analysis.md) for detailed analysis guidance.
+Use the `code-analysis` skill to explore only the codebase areas affected by the clarified requirements and gather relevant evidence. Keep the analysis targeted; avoid broad or exhaustive reviews. Launch 2–3 `code-analysis` agents in parallel, each focusing on a different aspect (e.g., similar features, architecture, UI patterns).
 
 ### Phase 3: Validate and Refine Requirements
 

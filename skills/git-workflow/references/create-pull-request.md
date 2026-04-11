@@ -47,9 +47,16 @@ Derived from the source branch name, user input, or `git log --oneline {target}.
 | Azure DevOps | microsoft/azure-devops-mcp         | azure-devops   |
 | GitHub       | io.github.github/github-mcp-server | github         |
 
-### Custom CLI
+### CLI Tools
 
-ALWAYS run `uv run python "<skill_dir>/scripts/pull_request.py" --help` first to see available options.
+| Tool | Description |
+| ---- | ----------- |
+| `pull_request.py` | CLI tool to create pull requests for GitHub, Azure DevOps, and GitLab repositories |
+
+**IMPORTANT:** ALWAYS run `uv run python "<skill_dir>/scripts/<tool>" --help` first to see available options.
+
+- `skill_dir`: absolute path to the `git-workflow` skill root
+- `repo_root`: from `git rev-parse --show-toplevel`
 
 Example usage:
 
@@ -67,14 +74,11 @@ uv run --with httpx==0.28.1 python "<skill_dir>/scripts/pull_request.py" \
     --cwd "<repo_root>"
 ```
 
-- `skill_dir`: absolute path to the `git-workflow` skill root
-- `repo_root`: from `git rev-parse --show-toplevel`
-
 ## Core Principles
 
 - MUST strictly follow the PR title and body format for consistency and traceability.
 - MUST use repository templates when available to ensure PRs include required information and follow standards.
-- MUST first use the MCP server listed in [MCP Servers](#mcp-servers) for the detected platform. Only use the [Custom CLI](#custom-cli) if no matching MCP server is available, or if the user explicitly requests the CLI.
+- MUST first use the MCP server listed in [MCP Servers](#mcp-servers) for the detected platform. Only use the [CLI Tools](#cli-tools) if no matching MCP server is available, or if the user explicitly requests the CLI.
 
 ## Workflow
 
@@ -82,7 +86,7 @@ uv run --with httpx==0.28.1 python "<skill_dir>/scripts/pull_request.py" \
 2. **Generate Title**: Run `git log --oneline {target}..{source}` and format per [PR Title](#pr-title).
 3. **Select Template**: Look for a PR template in `.github/`; prompt user if multiple exist. Fall back to [PR Body Template](#pr-body-template).
 4. **Render Body**: Populate the template with commit context and user inputs.
-5. **Create PR**: Use the MCP server listed in [MCP Servers](#mcp-servers) for the detected platform; fall back to the [Custom CLI](#custom-cli) if unavailable.
+5. **Create PR**: Use the MCP server listed in [MCP Servers](#mcp-servers) for the detected platform; fall back to the [CLI Tools](#cli-tools) if unavailable.
 6. **Assign**: Add `{reviewers}` and `{assignees}` after PR creation.
 
 ## Output

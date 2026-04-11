@@ -1,0 +1,38 @@
+{
+  "skill_name": "dba",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Review a migration that adds a new non-null status column to a 40 million row orders table, backfills it from existing order events, and removes the legacy status column in the same deploy. We use PostgreSQL, deploy application and migrations separately, and need a zero-downtime rollout. Produce a structured DBA analysis with prioritized findings, a safer rollout recommendation, and explicit validation steps.",
+      "expected_output": "A migration-focused DBA review that identifies compatibility, locking, backfill, and rollback risks, then recommends a staged rollout with concrete validation steps.",
+      "files": [],
+      "expectations": [
+        "The output identifies that combining schema change, large backfill, and legacy-column removal in one deploy is unsafe for a zero-downtime rollout.",
+        "The output recommends a staged rollout such as additive change, backfill, validation, constraint tightening, and delayed cleanup rather than a single-step migration.",
+        "The output includes explicit migration validation items such as compatibility checks, row verification, explain-plan or performance review, and rollback or forward-fix planning."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Analyze this database performance concern: an API endpoint loads 50 customers, then runs a separate query for each customer's recent invoices and another query for each invoice's payment attempts. The team wants advice on query risk, indexing, and validation, but no engine or execution plan is available. Produce a DBA analysis that distinguishes confirmed facts from inferred risks.",
+      "expected_output": "A query-pattern review that flags N+1 and access-pattern risks, avoids false certainty without plan evidence, and gives concrete indexing and validation guidance.",
+      "files": [],
+      "expectations": [
+        "The output identifies the repeated per-customer and per-invoice query pattern as an important performance risk rather than treating it as acceptable by default.",
+        "The output clearly distinguishes inferred performance concerns from confirmed evidence because no execution plan or metrics were provided.",
+        "The output recommends validation steps such as collecting explain plans, measuring query counts or latency, and checking indexes against actual predicates or join paths."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review a data repair plan that scans all user records to fix duplicated email-normalization bugs, updates rows in batches, and reruns until no mismatches remain. The script is written through the ORM, there is a unique index on normalized_email, and the team has not described retry behavior, audit logs, or rollback strategy. Produce a structured DBA analysis focused on data integrity and repair safety.",
+      "expected_output": "A repair-focused DBA review that surfaces integrity, idempotency, uniqueness, concurrency, and observability risks and provides a safer repair strategy plus validation steps.",
+      "files": [],
+      "expectations": [
+        "The output highlights repair-safety concerns such as idempotency, retry behavior, uniqueness conflicts, batching strategy, and auditability.",
+        "The output treats the existing unique index as an important invariant that can cause repair failures or ordering issues, not just a background detail.",
+        "The output includes concrete validation steps such as duplicate detection queries, batch-progress observability, rerun safety checks, and post-repair integrity verification."
+      ]
+    }
+  ]
+}
