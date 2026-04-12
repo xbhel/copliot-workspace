@@ -64,7 +64,7 @@ Once the requirements are clarified, summarize them concisely and **confirm the 
 
 ### Phase 2: Analyze the Codebase
 
-Use the `code-analysis` skill to explore only the codebase areas affected by the clarified requirements and gather relevant evidence. Keep the analysis targeted; avoid broad or exhaustive reviews. Launch 2–3 `code-analysis` agents in parallel, each focusing on a different aspect (e.g., similar features, architecture, UI patterns).
+Use the `code-analysis` skill to explore only the codebase areas affected by the clarified requirements and gather relevant evidence. Keep the analysis targeted; avoid broad or exhaustive reviews. Launch 2–3 `code-analysis` subagents in parallel, each focusing on a different aspect (e.g., similar features, architecture, UI patterns).
 
 ### Phase 3: Validate and Refine Requirements
 

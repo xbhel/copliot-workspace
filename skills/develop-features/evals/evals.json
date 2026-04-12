@@ -1,0 +1,81 @@
+{
+  "skill_name": "develop-features",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add a user notification preferences feature to an existing Django REST API. Users should be able to opt in or out of email and push notifications per notification type. Requirements are partially defined: the notification types are not yet listed, and it is unclear whether preferences are per-user or per-user-per-device.",
+      "expected_output": "A full end-to-end delivery that starts by clarifying the ambiguous requirements, progresses through architecture design with three competing approaches, produces a TDD-first execution plan, implements the feature in validated slices, and ends with a code-review-gated delivery summary.",
+      "files": [],
+      "expectations": [
+        "Phase 1 surfaces the ambiguity about notification types and per-user vs per-user-per-device scope and does not advance to design until those questions are resolved or explicitly carried forward.",
+        "Phase 2 produces three distinct design options with different emphasis (minimal changes, clean architecture, pragmatic balance) and recommends one before proceeding.",
+        "Phase 3 produces a TDD-first execution plan with independently verifiable tasks, explicit parallel vs sequential decisions, and a trackable to-do list.",
+        "Phase 4 follows a failing-test-first loop for each implementation slice and does not skip the red-green-refactor cycle.",
+        "Phase 5 applies code-review and treats Critical and Major findings as blocking before the delivery summary is produced.",
+        "The final delivery summary includes refined requirements baseline, approved design summary, implementation outcome, validation results, and remaining risks."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Implement a rate-limiting middleware for an existing Express.js API. The middleware should support per-IP and per-authenticated-user limits, configurable windows and thresholds, and return standard 429 responses with Retry-After headers. The execution plan marks the IP-limit slice and the user-limit slice as independent parallel items.",
+      "expected_output": "A delivery workflow where the two independent implementation slices — IP-limit and user-limit — are executed by separate parallel subagents in Phase 4, each completing its own red-green-refactor loop, before results are synchronized and shared validation is run.",
+      "files": [],
+      "expectations": [
+        "Phase 4 launches one implementation subagent per independent slice (IP-limit and user-limit) in parallel rather than implementing them sequentially.",
+        "Each parallel subagent is assigned a stable slice boundary and is kept off any shared unstable seam (e.g., shared middleware registry or config file) unless the plan explicitly coordinates that seam.",
+        "Each subagent completes its own red-green-refactor loop before results are merged.",
+        "After both subagents complete, the skill synchronizes results, resolves any conflicts, and runs shared validation before continuing to Phase 5.",
+        "The parallel execution strategy is traceable in the delivery summary under implementation outcome."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Build a CSV bulk-import feature for a React + FastAPI application. Users upload a CSV, the backend validates rows, persists valid records, and returns a structured error report for invalid ones. I want the planning phase to produce a task graph showing which tasks can run in parallel.",
+      "expected_output": "An execution plan with a Mermaid task graph that identifies independently parallelizable tasks (e.g., CSV parsing logic and database persistence layer) and uses parallel subagents in Phase 4 for those tasks.",
+      "files": [],
+      "expectations": [
+        "Phase 3 produces a Mermaid task graph that can identify parallelizable implementation tasks.",
+        "Phase 4 uses parallel subagents for tasks the plan marks as independent, and serializes tasks the plan marks as dependent.",
+        "Validation gates between waves are explicit: each wave's subagents finish and pass their own tests before the next dependent wave begins.",
+        "The delivery summary reports the changed surfaces, validation outcomes, and any conflicts resolved during parallel wave synchronization."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Extend an existing payments module to support multi-currency checkout. Requirements mention 'support multiple currencies' but do not define the currency list, rounding rules, FX rate source, or how existing single-currency records should be treated after the migration.",
+      "expected_output": "Phase 1 stops and explicitly surfaces all four under-defined areas before advancing. The skill does not silently absorb them or make up defaults.",
+      "files": [],
+      "expectations": [
+        "Phase 1 identifies at least the currency list, rounding rules, FX rate source, and migration strategy for existing records as unresolved requirement-critical questions.",
+        "The skill does not advance to Phase 2 before the user resolves or explicitly carries forward those open questions.",
+        "When the user provides answers, Phase 2 produces a design that reflects those confirmed constraints and does not reintroduce resolved questions.",
+        "The skill confirms the chosen design approach with the user before Phase 3 begins."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Add full-text search to a product catalog using Elasticsearch. During Phase 4, the index-mapping subagent and the query-builder subagent both try to write to the same shared search client configuration file. Describe how the skill should handle this conflict.",
+      "expected_output": "The skill detects the shared-seam conflict, serializes that seam or applies explicit coordination, does not allow both subagents to write to the same unstable file concurrently, and recombines safely before continuing.",
+      "files": [],
+      "expectations": [
+        "The skill recognizes that two parallel subagents contending on the same configuration file violates the rule that parallel subagents must stay off the same unstable seam.",
+        "The skill either serializes the conflicting seam (one subagent writes first, the other waits), splits the file into two stable boundaries, or gets explicit approval before allowing concurrent writes.",
+        "After resolving the conflict, the skill runs shared validation before advancing to the next wave.",
+        "The delivery summary notes the conflict and its resolution under implementation outcome."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Add a password-reset flow to a Flask application. Code review in Phase 5 returns two Critical findings: the reset token is not expiring and the token is logged in plaintext in the audit log. How should the skill proceed?",
+      "expected_output": "The skill treats both Critical findings as blocking, returns to the TDD loop for the affected slices, re-runs relevant validation, and does not present the feature as complete until both findings are resolved.",
+      "files": [],
+      "expectations": [
+        "The skill classifies both findings as Critical and treats them as blocking per the Core Principles.",
+        "The skill does not present the feature as complete or produce a final delivery summary while blocking findings remain unresolved.",
+        "The skill returns to the Phase 4 TDD loop for the affected slices (token expiry and audit-log sanitization), implements fixes, and re-runs relevant tests.",
+        "After fixes are applied, the skill re-runs code-review on the updated diff before closing the review loop.",
+        "The final delivery summary includes the resolved Critical findings and the validation that confirmed resolution."
+      ]
+    }
+  ]
+}
