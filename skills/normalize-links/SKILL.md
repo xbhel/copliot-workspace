@@ -20,7 +20,7 @@ Use this skill when:
 - links should be rewritten into one consistent markdown format
 - inferred metadata is needed for clean, repeatable reference lists or notes
 
-`[{from}/{author}/{type}/{title}]({url}): {description}`
+`[{from}/{author}/{type}/{title}]({url}): {description} #{topic}`
 
 Fields:
 
@@ -29,7 +29,8 @@ Fields:
 - `type`: 2-15 chars, lowercased ASCII, inferred from URL path or content. such as `article`, `video`, `repo`, `docs`, `blog`, `news`, `forum`, `wiki`, `industry`, `report` etc.
 - `title`: kebab-case, lowercased ASCII, max 60 chars.
 - `url`: The URL of the link.
-- `description`: concise English summary, max 150 chars, English. 
+- `description`: concise English summary, max 150 chars, English.
+- `topic`: Optional, inferred subject domain and subtopic, formatted as `domain` or `domain/subtopic`. Use `/` to express a subtopic within a domain. Examples: `ai/agent`, `web/springboot`, `bigdata/flink`, `devops/ci`.
 
 ## Inputs
 
@@ -49,8 +50,8 @@ Output one normalized link per detected URL and nothing else.
 
 URL:
 - Input: https://github.com/punkpeye/awesome-mcp-servers
-- Output: [github/punkpeye/repo/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers): A collection of excellent MCP servers.
+- Output: [github/punkpeye/repo/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers): A collection of excellent MCP servers. #ai/agent
 
 Markdown link:
 - Input: [The State of MCP in 2025](https://glama.ai/blog/2025-12-07-the-state-of-mcp-in-2025)
-- Output: [glama/blog/the-state-of-mcp-in-2025](https://glama.ai/blog/2025-12-07-the-state-of-mcp-in-2025): An analysis predicting or discussing the state and trends of MCP by 2025.
+- Output: [glama/blog/the-state-of-mcp-in-2025](https://glama.ai/blog/2025-12-07-the-state-of-mcp-in-2025): An analysis predicting or discussing the state and trends of MCP by 2025. #ai/mcp

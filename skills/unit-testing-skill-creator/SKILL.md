@@ -27,18 +27,18 @@ Do not use this skill to write or execute tests directly. Use it to author the s
 
 ## Inputs
 
-| name | description | default | required | source | allowed values | example |
-| ---- | ----------- | ------- | -------- | ------ | -------------- | ------- |
-| language | Target programming language for the generated unit-testing skill. |  | Yes | user or derived | Any programming language with an established test ecosystem | Python |
-| env | Runtime environment or version constraints that the generated skill must assume. | ecosystem default | No | user or derived | Versioned runtime, SDK, virtual environment, or container convention | 	venv Python 3.12 |
-| testing_stack | Testing stack in comma-separated `key=value` form. Supported keys: `framework`, `assertion`, `mock`, `coverage`, `lint`. Infer missing keys from the ecosystem when possible. | ecosystem default | No | user or derived | Framework-specific tool choices | framework=pytest,assertion=assert,mock=unittest.mock,coverage=coverage |
-| build_tool | Package manager, task runner, or build tool used to install dependencies and run tests. | ecosystem default | No | user or derived | Maven, Gradle, uv, npm, pnpm, go, cargo | uv |
-| project_layout | Source, test, fixtures, and helper layout the generated skill should assume. | ecosystem default | No | user or derived | Repository-specific layout or mirrored defaults | src/ and tests/unit/ |
-| context | Project-specific conventions that do not fit the structured fields above, such as naming patterns, commands, config files, or exception cases. |  | No | user | Repository conventions and special rules | Test file naming: `test_<module>.py`; use `uvx ruff check` for lint |
-| domain_context | Optional framework or domain context that changes unit-testing patterns. |  | No | user or derived | Spring, FastAPI, React, Flink, CLI tools, data pipelines | FastAPI |
-| coverage_target | Coverage threshold the generated skill should use as its default gate after tests and lint pass. | 80% | No | user or default | Percentage | 85% |
-| max_iterations | Iteration cap for the generated skill's run-test-fix-improve loop. | 3 | No | user or default | Positive integer | 4 |
-| skill_name | Directory and frontmatter name for the generated skill. Preserve the original name when refining an existing skill. | derived from request | No | user or derived | Valid skill folder name | python-pytest |
+| name | description | default | required | source | example |
+| ---- | ----------- | ------- | -------- | ------ | ------- |
+| language | Target programming language for the generated unit-testing skill. |  | Yes | user or derived | Python |
+| env | Runtime environment or version constraints that the generated skill must assume. | ecosystem default | No | user or derived | venv Python 3.12 |
+| testing_stack | Including `framework`, `assertion`, `mock`, `coverage`, `lint`. Infer any missing elements from the ecosystem when possible. | ecosystem default | No | user or derived | framework=pytest,assertion=assert,mock=unittest.mock,coverage=coverage |
+| build_tool | Package manager, task runner, or build tool used to install dependencies and run tests. | ecosystem default | No | user or derived | uv |
+| project_layout | Source, test, fixtures, and helper layout the generated skill should assume. | ecosystem default | No | user or derived | src/ and tests/unit/ |
+| context | Project-specific conventions that do not fit the structured fields above, such as naming patterns, commands, config files, or exception cases. |  | No | user | Test file naming: `test_<module>.py`; use `uvx ruff check` for lint |
+| domain_context | Optional framework or domain context that changes unit-testing patterns. |  | No | user or derived | FastAPI |
+| coverage_target | Coverage threshold the generated skill should use as its default gate after tests and lint pass. | 80% | No | user or default | 85% |
+| max_iterations | Iteration cap for the generated skill's run-test-fix-improve loop. | 3 | No | user or default | 4 |
+| skill_name | Directory and frontmatter name for the generated skill. Preserve the original name when refining an existing skill. | derived from request | No | user or derived | python-pytest |
 
 ## Context
 

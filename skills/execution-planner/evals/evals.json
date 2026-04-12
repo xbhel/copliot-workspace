@@ -1,0 +1,23 @@
+{
+  "skill_name": "execution-planner",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Break down the work to add OAuth login to an existing React frontend and Express backend. I want small tasks, explicit dependencies, clear checkpoints, and a task graph.",
+      "expected_output": "A structured execution plan with independently verifiable tasks, explicit parallel vs sequential decisions, lightweight task steps, checkpoints, a trackable to-do list, and a Mermaid dependency graph.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Create an execution plan for refactoring a large CSV import module into parser, validator, and persistence layers without breaking existing behavior. Include checkpoints and identify what can run in parallel.",
+      "expected_output": "A decomposition that separates design and coding tasks, highlights risky shared seams, and expresses dependency ordering clearly.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Plan the work for a non-coding release runbook update covering rollback steps, stakeholder sign-off, and launch-day checklist. I still want task dependencies, checkpoints, and a trackable todo list.",
+      "expected_output": "A non-coding execution plan with independently reviewable tasks, explicit sequential dependencies, checkpoints, a trackable to-do list, and a Mermaid task graph.",
+      "files": []
+    }
+  ]
+}
