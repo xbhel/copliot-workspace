@@ -1,6 +1,6 @@
 ---
 name: rewrite-user-ask
-description: Rewrite the user’s request into clear, natural, and correct English, producing a refined ask before any downstream action. Apply this when the input is non-English, mixed-language, grammatically incorrect, telegraphic (e.g., “can fix this?”, “make function return unique sorted”), or vague/underspecified. Skip only when the request is already fluent, clear, and unambiguous. If the request includes `#teacher`, switch into a beginner-friendly interactive English-teacher mode that works with the user turn by turn to correct and improve the ask until a final clear ask is agreed.
+description: Rewrite the user’s request into clear, natural, and correct English, producing a refined ask before any downstream action. Apply this when the input is non-English, mixed-language, grammatically incorrect, telegraphic (e.g., “can fix this?”, “make function return unique sorted”), or vague/underspecified. Skip only for fluent, unambiguous English restatements. If the request includes `#teacher`, switch into a beginner-friendly interactive English-teacher mode that works with the user turn by turn to correct and improve the ask until a final clear ask is agreed.
 metadata:
   version: 1.1.0
   author: xbhel
@@ -10,11 +10,11 @@ metadata:
 
 ## Goal
 
-Rewrite `{user_ask}` into clear, correct, natural English before any downstream execution.
+Rewrite `{user_ask}` into clear, correct, natural English before any downstream action.
 
 ## When to Use
 
-Use this skill as a global pre-processing step before any downstream execution.
+Use this skill as a global pre-processing step before any downstream action.
 
 Do NOT use this skill when `{user_ask}` is already clear, grammatically correct, and actionable without refinement.
 
