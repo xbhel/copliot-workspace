@@ -62,6 +62,7 @@ Before moving forward:
 - resolve or explicitly carry forward any open questions
 - confirm the refined requirements with the user
 - capture the affected files, patterns, tests, and constraints that later phases must respect
+- identify the build and runtime context, including the relevant scripts, commands, test execution steps, and test suites that subsequent phases should use for validation.
 
 ### Phase 2: Design the Solution
 
@@ -83,7 +84,7 @@ The plan should stay TDD-first and include the execution slices, dependencies, c
 
 ### Phase 4: Implement with TDD
 
-Execute the plan through `/test-driven-development`, following its failing-test-first workflow for each implementation slice.
+Execute the plan through `/test-driven-development`, following its **failing-test-first** workflow for each implementation slice.
 
 When Phase 3 marks items as parallel, run multiple implementation subagents in parallel, one per independent item or small cluster within the same wave.
 
@@ -107,6 +108,7 @@ Scope the review to:
 - the confirmed requirements
 - the approved design constraints
 - the expected tests, lint checks, and validation steps
+- the desired behavior, success criteria, and edge cases
 
 Treat `Critical` and `Major` review findings as blocking.
 

@@ -35,6 +35,7 @@ Use this skill when:
 - MUST use codebase evidence to resolve ambiguities before escalating to the user.
 - MUST produce a requirements specification, not an architecture proposal.
 - MUST surface assumptions and risks explicitly; do not absorb them silently.
+- NEVER implement or design; focus on clarifying and refining requirements only.
 
 ## Workflow
 
