@@ -77,4 +77,4 @@ If input parameters are required:
 - NEVER ask for info that can be inferred or fetched via tools.
 - NEVER assume completeness—check for missing inputs and request them explicitly.
 - In skill/agent writing, always use **MUST** for required behavior and **NEVER** for anti-pattern or prohibited behavior.
-- MUST use `/rewrite-user-ask` as a global pre-processing step to rewrite the user’s request into clear, actionable English requests.
+- Always apply `/rewrite` first to the user’s request in every interaction, passively and without requiring explicit instruction.
