@@ -1,40 +1,25 @@
-# Agents & Skills Guidelines
+# Agents Guidelines
 
 ## Content Structure
 
-When authoring a **skill file**, organize the content in the following order:
+When authoring a skill, organize the content in the following order:
 
 1. Metadata: Defined at the top of the file.
-   - `name`
-   - `description`
-   - `allowed-tools` (optional): Space-delimited list of pre-approved tools the skill may use.
-   - `metadata`:
-     - `version`
-     - `author`
-2. `## Goal`: Clear statement of the skill’s purpose and expected outcome.
-3. `## When to Use`: Guidance on scenarios where this skill is applicable.
-4. `## Inputs` (optional): Table of input parameters following the defined Input Schema below.
-5. `## Context` (optional): Background, conventions, or assumptions that inform execution.
-6. `## Core Principles` (optional): Constraints and rules that must be followed.
-7. `## Workflow` (optional): Step-by-step execution process to achieve its goal.
-8. `## Output` (optional): Expected output format and structure.
-9. `## Error Handling` (optional): Rules for handling errors and exceptions.
-10. `## Examples` (optional): Sample inputs and expected outputs demonstrating usage.
+2. Goal: Clear statement of the skill’s purpose and expected outcome.
+3. When to Use: Guidance on scenarios where this skill is applicable.
+4. Inputs (optional): Table of input parameters following the defined Input Schema below.
+5. Context (optional): Background, conventions, or assumptions that inform execution.
+6. Core Principles (optional): Constraints and rules that must be followed.
+7. Workflow (optional): Step-by-step execution process to achieve its goal.
+8. Output (optional): Expected output format and structure.
+9. Error Handling (optional): Rules for handling errors and exceptions.
+10. Examples (optional): Sample inputs and expected outputs demonstrating usage.
 
-**Agents files** should follow a similar structure but may omit sections that are not relevant to their orchestration role.
-
-Agent guidelines:
-
-- Keep metadata first.
-- Prefer including `## Goal`, `## Inputs`, and `## Workflow` sections for clarity.
-- Add other sections only when they provide meaningful context or guidance.
+Always use `Must` to denote required behavior and `Never` to denote prohibited or anti-pattern behavior in `Core Principles`.
 
 ## Input Schema
 
-When a skill or agent defines an `##Inputs` section, it must use the following table schema:
-
-| name | description | default | required | source | allowed values | example |
-| ---- | ----------- | ------- | -------- | ------ | -------------- | ------- |
+When a skill or agent defines an `Inputs` section, it must use the following schema:
 
 Fields:
 
@@ -53,13 +38,9 @@ Fields:
 - `allowed values` (optional): A list of permissible values for the input parameter.
 - `example` (optional): An example value for the input parameter.
 
-The optional columns may be omitted entirely from the table if they are not applicable to any input parameters.
-
 ## User Interaction
 
-Users typically invoke an **agent** or **skill** by name.
-
-If input parameters are required:
+Users typically invoke an **agent** or **skill** by name. If input parameters are required:
 
 - Collect values through an appropriate interface (e.g., form, command line, API request).
 - Prefer using `ask_questions` to gather or confirm input values unless another interface is better suited for the context.
@@ -69,12 +50,6 @@ If input parameters are required:
 
 ## Core Principles
 
-- MUST use the correct model for the task, preferring the latest version:
-  - GPT for reasoning
-  - Gemini for creativity
-  - Claude for orchestration and coding
-- ALWAYS reference input parameters with `{name}` in skills/agents.
-- NEVER ask for info that can be inferred or fetched via tools.
-- NEVER assume completeness—check for missing inputs and request them explicitly.
-- In skill/agent writing, always use **MUST** for required behavior and **NEVER** for anti-pattern or prohibited behavior.
-- Always apply `/rewrite` first to the user’s request in every interaction, passively and without requiring explicit instruction.
+- Never ask for info that can be inferred or fetched via tools.
+- Never assume completeness—check for missing inputs and request them explicitly.
+- Must begin each interaction by passively applying the `/rewrite` skill to the user’s request, without requiring explicit instruction.

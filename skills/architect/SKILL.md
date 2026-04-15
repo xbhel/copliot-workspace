@@ -1,5 +1,5 @@
 ---
-name: architecture-design
+name: architect
 description: Design a clear, extensible, and maintainable architecture proposal with explicit boundaries, responsibilities, integration points, and scalability considerations. Use this skill when a change requires architectural decisions, boundary definition, or integration design before implementation.
 metadata:
   version: 1.0.1
