@@ -1,14 +1,15 @@
 ---
-name: develop-features
+name: develop
 description: Orchestrate end-to-end feature delivery by composing requirement analysis, architecture design, execution planning, TDD implementation, code review, and final handoff. Use this skill when delivering a non-trivial feature from raw request through validated completion.
+argument-hint: "description of the feature, change, or problem to solve"
 metadata:
   version: 1.1.1
   author: xbhel
   depends-on:
-    - requirement-analysis
-    - architecture-design
-    - execution-planner
-    - test-driven-development
+    - analyze
+    - architect
+    - decompose
+    - tdd
     - code-review
 ---
 
@@ -27,12 +28,6 @@ Use this skill when:
 - the task benefits from explicit user checkpoints between requirements, design, implementation, and review instead of jumping straight into a single edit
 
 Do not use this skill when a single specialist skill is sufficient for the task.
-
-## Inputs
-
-| name | description | required | source |
-| --- | --- | --- | --- |
-| requirements | The user's description of the feature, change, or problem to solve. It may be incomplete, unclear, or ambiguous. | Yes | user |
 
 ## Context
 
@@ -55,7 +50,7 @@ Do not use this skill when a single specialist skill is sufficient for the task.
 
 ### Phase 1: Clarify Requirements
 
-Use `/requirement-analysis` to clarify, validate, and refine the requirements until they are ready for design.
+Use `/analyze` skill to clarify, validate, and refine the requirements until they are ready for design.
 
 Before moving forward:
 
@@ -66,7 +61,7 @@ Before moving forward:
 
 ### Phase 2: Design the Solution
 
-Once the refined requirements are confirmed, use `/architecture-design` to produce the implementation-ready design.
+Once the refined requirements are confirmed, use `/architect` skill to produce the implementation-ready design.
 
 Launch three parallel design subagents with different focuses:
 
@@ -78,13 +73,13 @@ Then compare the three approaches, evaluate the trade-offs, recommend one option
 
 ### Phase 3: Plan the Implementation
 
-After the design is approved, use `/execution-planner` to convert the confirmed scope into an execution-ready plan.
+After the design is approved, use the `/decompose` skill to transform the confirmed scope into a structured execution plan—comprising decomposed, sequenced, and parallelizable tasks with explicit dependencies, defined checkpoints, and a trackable to-do list. This serves as the execution-ready plan.
 
 The plan should stay TDD-first and include the execution slices, dependencies, checkpoints, trackable to-do list, and task graph needed to drive implementation safely.
 
 ### Phase 4: Implement with TDD
 
-Execute the plan through `/test-driven-development`, following its **failing-test-first** workflow for each implementation slice.
+Execute the plan using a test-first approach via the `/tdd` skill, following its **failing-test-first** workflow for each implementation slice.
 
 When Phase 3 marks items as parallel, run multiple implementation subagents in parallel, one per independent item or small cluster within the same wave.
 
@@ -100,13 +95,13 @@ During implementation, you MUST:
 
 ### Phase 5: Quality Review and Iteration
 
-When the implementation is functionally complete, use `/code-review` on the resulting change set.
+When the implementation is functionally complete, use `/code-review` skill on the resulting change set.
 
 Scope the review to:
 
 - the implemented diff
 - the confirmed requirements
-- the approved design constraints
+- the approved design pattern and constraints
 - the expected tests, lint checks, and validation steps
 - the desired behavior, success criteria, and edge cases
 
@@ -134,8 +129,8 @@ A structured final delivery summary that synthesizes the outputs of the delegate
 
 - Stop before design when requirement-critical questions remain unresolved.
 - Present the lower-risk option and wait for approval when the design conflicts with the codebase or is over-engineered for the task.
-- Refine or rescope the plan before coding when `execution-planner` cannot produce independently verifiable tasks.
-- Create the smallest safe test seam first, or get explicit approval, when `test-driven-development` cannot start cleanly.
+- Refine or rescope the plan before coding when `/decompose` cannot produce independently verifiable tasks.
+- Create the smallest safe test seam first, or get explicit approval, when `/tdd` cannot start cleanly.
 - Reslice the work or serialize that seam when parallel implementation slices begin to conflict.
-- Do not present the feature as complete while blocking `code-review` findings remain unresolved, unless the user explicitly accepts them.
+- Do not present the feature as complete while blocking `/code-review` findings remain unresolved, unless the user explicitly accepts them.
 - Split long-running delegated phases into subagents where appropriate, then recombine their outputs before continuing.

@@ -1,6 +1,6 @@
 ## Goal
 
-Define how the execution-planner skill should shape tasks so they are small, independently verifiable, and safe to schedule.
+Define how the decompose skill should shape tasks so they are small, independently verifiable, and safe to schedule.
 
 ## Task Sizing Rules
 

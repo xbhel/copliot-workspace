@@ -1,11 +1,12 @@
 ---
-name: execution-planner
+name: decompose
 description: Decompose a requirement, feature, or work item into small, independently executable and verifiable tasks, establish an execution-ready to-do list, and make sequencing and parallelism explicit. Use this whenever the user asks to break work down, plan implementation, create a roadmap, identify dependencies, decide what can run in parallel, track progress, or produce a task graph, even if they do not explicitly ask for a planner.
+argument-hint: "requirement, feature, or work item to decompose and plan for execution"
 metadata:
   version: 1.4.4
   author: xbhel
   depends-on:
-    - requirement-analysis
+    - analyze
 ---
 
 # Execution Planner
@@ -24,12 +25,6 @@ Use this skill when:
 - the user asks for a task graph, execution plan, or step-by-step delivery plan
 
 Do not use this skill to replace requirement clarification, design, or implementation. Use it to plan and track that work.
-
-## Inputs
-
-| name | description | default | required | source | allowed values | example |
-| ---- | ----------- | ------- | -------- | ------ | -------------- | ------- |
-| requirements | Raw request, requirement, task, or change description to decompose. |  | Yes | user or upstream |  | Add OAuth login to the existing web app |
 
 ## Context
 
@@ -54,7 +49,7 @@ Do not use this skill to replace requirement clarification, design, or implement
 
 ### Step 1. Confirm the planning baseline
 
-Resolve the goal, boundary, and granularity from `{requirements}`. If the requirement is not ready to decompose safely, use `/requirement-analysis` first.
+Resolve the goal, boundary, and granularity from requirements. If the requirement is not ready to decompose safely, use `/analyze` skill first.
 
 ### Step 2. Slice the work into candidate tasks
 
@@ -116,27 +111,6 @@ Before finalizing, verify that:
 ## Output
 
 Output the plan using the exact section structure defined in [references/output-template.md](references/output-template.md).
-
-At minimum, include these sections in order:
-
-1. `Plan Summary`
-2. `Execution Waves`
-3. `Task List`
-4. `Checkpoints`
-5. `Trackable Todo List`
-6. `Task Graph`
-
-Each task in `Task List` MUST include:
-
-- `ID`
-- `Title`
-- `Type`
-- `Wave`
-- `Execution`
-- `Depends-on`
-- `Objective`
-- `Steps`
-- `Verification`
 
 ## Error Handling
 
