@@ -21,8 +21,6 @@ Always use `Must` to denote required behavior and `Never` to denote prohibited o
 
 When a skill or agent defines an `Inputs` section, it must use the following schema:
 
-Fields:
-
 - `name`: The name of the input parameter, used for referencing within the skill or agent by `{name}`.
 - `description`: A brief explanation of the input parameter's purpose.
 - `default` (optional): A default value for the input parameter.
@@ -52,4 +50,4 @@ Users typically invoke an **agent** or **skill** by name. If input parameters ar
 
 - Never ask for info that can be inferred or fetched via tools.
 - Never assume completeness—check for missing inputs and request them explicitly.
-- Must begin each interaction by passively applying the `/rewrite` skill to the user’s request, without requiring explicit instruction.
+- Must call the `/rewrite` skill on every new user message before any other work begins, and use the rewritten request as the source of truth for the current turn only.

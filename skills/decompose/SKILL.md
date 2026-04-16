@@ -6,10 +6,10 @@ metadata:
   version: 1.4.4
   author: xbhel
   depends-on:
-    - analyze
+    - clarify
 ---
 
-# Execution Planner
+# Plan And Decompose Requirement
 
 ## Goal
 

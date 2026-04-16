@@ -31,7 +31,7 @@ Rewrite original user request into clear, correct, natural, beginner-friendly En
 
 ## Output
 
-For standard mode, the output is a single rewritten request in clear English.
+For standard mode, output 🎉 followed by a single, clearly rewritten request in English.
 
 For Teacher mode, the output is an interactive step-by-step correction and refinement process that includes explanations of grammar fixes, key vocabulary, tense usage, and more natural phrasing, along with practice exercises and revision options, culminating in a final rewritten request once clarity is achieved. Practice, Next step, and Draft rewrite are treated as part of an interactive refinement loop.
 
@@ -41,7 +41,7 @@ Standard Mode:
 
 ```text
 user: Bang wo review zhege PR, zhongdian kan you mei you breaking change.
-output: Review this pull request with emphasis on potential breaking changes or backward-incompatible behavior.
+output: 🎉Review this pull request with emphasis on potential breaking changes or backward-incompatible behavior.
 ```
 
 Teacher Mode (interactive refinement loop):
@@ -82,6 +82,6 @@ Please help me write a clearer request for fixing the login bug.
 ✍️Draft rewrite:
 Help me rewrite my request to ask for a fix to the login bug.
 
-📝Final rewrite:
+🎉Final rewrite:
 Help me rewrite this request in clear English: investigate the login bug and explain the likely cause.
 ```

@@ -78,7 +78,7 @@ class GithubProvider(PlatformProvider):
 
     @property
     def _auth(self) -> httpx.BasicAuth:
-        return httpx.BasicAuth(self._context["user"], self._context["password"])
+        return httpx.BasicAuth("", self._context["access_token"])
 
     @property
     def _api_base(self) -> str:
@@ -225,7 +225,7 @@ class AzureDevOpsProvider(PlatformProvider):
 
     @property
     def _auth(self) -> httpx.BasicAuth:
-        return httpx.BasicAuth(self._context["user"], self._context["password"])
+        return httpx.BasicAuth("", self._context["access_token"])
 
     @property
     def _api_base(self) -> str:
@@ -256,7 +256,7 @@ class AzureDevOpsProvider(PlatformProvider):
                 self._identity_api_base,
                 headers=self._headers,
                 # Use a PAT for the Identities API, as it may not accept Git API credentials.
-                auth=httpx.BasicAuth("", self._context["password"]),
+                auth=httpx.BasicAuth("", self._context["access_token"]),
                 params={
                     "searchFilter": "General",
                     "filterValue": reviewer,
@@ -412,7 +412,7 @@ class GitLabProvider(PlatformProvider):
 
     @property
     def _headers(self) -> dict[str, str]:
-        return {"Content-Type": "application/json", "PRIVATE-TOKEN": self._context["password"]}
+        return {"Content-Type": "application/json", "PRIVATE-TOKEN": self._context["access_token"]}
 
     @property
     def _project_api(self) -> str:
@@ -591,31 +591,30 @@ def _ssh_url_to_https(url: str) -> str:
     return url
 
 
-async def get_credentials(remote_url: str, cwd: str | None = None) -> tuple[str, str]:
-    """Get the username and token for the given remote URL using git credential helper.
+async def get_credentials(remote_url: str, cwd: str | None = None) -> str:
+    """Get the access token for the given remote URL using git credential helper.
 
     Raises RuntimeError if credentials cannot be found in either place.
     """
-    user, password = os.getenv("GIT_USER"), os.getenv("GIT_PASSWD")
-    if not user or not password:
+    access_token = os.getenv("GIT_PAT")
+    if not access_token:
         cred_url = _ssh_url_to_https(remote_url)
         creds_input = f"url={cred_url}\n\n".encode()
         creds_output = await run_cmd(
             ["git", "credential", "fill"], cwd=cwd, input_bytes=creds_input
         )
         creds = dict(line.split("=", 1) for line in creds_output.splitlines() if "=" in line)
-        user = user or creds.get("username")
-        password = password or creds.get("password")
-    if not user or not password:
+        access_token = creds.get("password")
+    if not access_token:
         logger.error(
             "Git credentials not found for remote '%s'"
-            " — set GIT_USER/GIT_PASSWD or configure a credential helper",
+            " — set GIT_PAT or configure a credential helper",
             remote_url,
         )
         raise RuntimeError(
             "Git credentials not found in environment variables or git credential helper"
         )
-    return user, password
+    return access_token
 
 
 async def build_git_context(cwd: str | None = None) -> dict[str, str]:
@@ -624,8 +623,7 @@ async def build_git_context(cwd: str | None = None) -> dict[str, str]:
         A dictionary containing git information for the current repository. includes:
             - remote_url: The URL of the remote repository.
             - branch: The current branch name.
-            - user: The username for authentication.
-            - password: The password or token for authentication.
+            - access_token: The access token for authentication.
     Raises:
         RuntimeError: If git commands fail or credentials cannot be found.
     """
@@ -635,8 +633,8 @@ async def build_git_context(cwd: str | None = None) -> dict[str, str]:
             run_cmd(["git", "remote", "get-url", "origin"], cwd=cwd),
         ]
     )
-    user, password = await get_credentials(remote_url, cwd=cwd)
-    return {"remote_url": remote_url, "branch": branch, "user": user, "password": password}
+    access_token = await get_credentials(remote_url, cwd=cwd)
+    return {"remote_url": remote_url, "branch": branch, "access_token": access_token}
 
 
 async def pull_request(llm_context: dict[str, Any], cwd: str | None = None) -> PullRequestResult:

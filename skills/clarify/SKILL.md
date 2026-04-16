@@ -1,5 +1,5 @@
 ---
-name: analyze
+name: clarify
 description: Analyze the user’s requirements, clarify ambiguities, validate them against the codebase, and produce a refined specification ready for design and implementation. Use this skill before design or implementation when requirements are incomplete, ambiguous, or need codebase validation.
 argument-hint: "feature description or requirements"
 metadata:

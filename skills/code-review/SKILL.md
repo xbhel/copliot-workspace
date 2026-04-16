@@ -102,7 +102,7 @@ Produce an evidence-based review of a change, prioritizing correctness, regressi
 
 ### 6. Check Design Alignment and Maintainability
 
-- Compare the implementation against `{requirements}` and existing architectural patterns.
+- Compare the implementation against requirements and existing architectural patterns.
 - Flag unnecessary complexity, hidden coupling, ownership drift, and misplaced responsibilities.
 - Check whether the change requires documentation updates when it modifies APIs, configuration, schemas, or observable behavior.
 - Distinguish maintainability risks from subjective style preferences.
@@ -113,7 +113,7 @@ Produce an evidence-based review of a change, prioritizing correctness, regressi
 - Report findings in severity order using this priority:
   - `Critical`: bug, regression, security issue, data loss risk, or missing core requirement
   - `Major`: meaningful test gap, design drift, reliability risk, or important maintainability issue
-  - `Minor`: small readability, naming, or consistency issue that does not materially affect correctness
+  - `Minor`: small readability, naming, unused, or consistency issue that does not materially affect correctness
 - Include the following for each finding:
   - the impact
   - the concrete evidence
