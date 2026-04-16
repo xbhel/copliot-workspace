@@ -1,16 +1,16 @@
 ---
-name: analyze-words
-description: Analyze words and provide pronunciation, part of speech, beginner-friendly meanings, morphology, common phrases, and example sentences. Use this skill when users want beginner-friendly word meanings, pronunciation, morphology, phrases, or examples.
+name: explain-words
+description: Explain words with pronunciation, part of speech, beginner-friendly meanings, morphology, common phrases, and example sentences. Use this skill when users want beginner-friendly word meanings, pronunciation, morphology, phrases, or examples.
 metadata: 
   version: 1.0.0
   author: xbhel
 ---
 
-# Analyze Words
+# Explain Words
 
 ## Goal
 
-Given one or more words, analyze each word and present a short, beginner-friendly explanation in a consistent markdown format.
+Given one or more words, explain each word and present a short, beginner-friendly explanation in a consistent markdown format.
 
 For each word, include:
 
@@ -32,12 +32,6 @@ Use this skill when:
 - the task is to explain one or more words for a learner
 - pronunciation, part of speech, or morphology should be included with simple meanings
 - the output should follow a consistent word-by-word format with phrases and examples
-
-## Inputs
-
-|name| description|default|required|source|
-|-|-|-|-|-|
-|words|A list of words to analyze.| |Yes|user or upstream|
 
 ## Core Principles
 

@@ -6,7 +6,7 @@ metadata:
   version: 1.1.1
   author: xbhel
   depends-on:
-    - analyze
+    - clarify
     - architect
     - decompose
     - tdd
@@ -50,7 +50,7 @@ Do not use this skill when a single specialist skill is sufficient for the task.
 
 ### Phase 1: Clarify Requirements
 
-Use `/analyze` skill to clarify, validate, and refine the requirements until they are ready for design.
+Use `/clarify` skill to clarify, validate, and refine the requirements until they are ready for design.
 
 Before moving forward:
 
